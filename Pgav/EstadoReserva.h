@@ -1,5 +1,5 @@
-#ifndef DATATYPESTADORESERVA_H
-#define DATATYPESTADORESERVA_H
+#ifndef ESTADORESERVA_H
+#define ESTADORESERVA_H
 
 #include <stdexcept>
 
@@ -17,7 +17,7 @@ private:
     Reserva estado_;
 };
 
-EstadoReserva::EstadoReserva(int estado) {
+EstadoReserva(int estado) {
     switch (estado) {
         case 0:
             estado_ = Abierta;
