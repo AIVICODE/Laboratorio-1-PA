@@ -6,10 +6,10 @@ class DTHuesped {
 		bool esFinger;
 	public:
 		DTHusped(string _nombre, string _email, bool _esFinger);
-		SetEmail(string nuevo_email);
-		SetNombre(string nuevo_nombre);
-		SetEsFinger(bool nuevo_esfinger);
-		GetNombre();
-		GetEmail();
-		GetEsFinger();
+		void SetEmail(string nuevo_email);
+		void SetNombre(string nuevo_nombre);
+		void SetEsFinger(bool nuevo_esfinger);
+		string GetNombre();
+		string GetEmail();
+		bool GetEsFinger();
 };
