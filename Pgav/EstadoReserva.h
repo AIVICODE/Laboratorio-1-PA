@@ -1,4 +1,20 @@
+#ifndef ESTADORESERVA_H
+#define ESTADORESERVA_H
 
-typedef enum EstadoReserva{
-	Abierta,Cerrada,Cancelada
+
+class EstadoReserva {
+public:
+    enum Reserva {
+        Abierta,
+        Cerrada,
+        Cancelada
+    };
+
+    EstadoReserva(int estado);
+
+private:
+    Reserva estado_;
 };
+
+
+#endif

@@ -1,4 +1,11 @@
 #include "DTReserva.h"
-typedef struct DTReservaIndividual : DTReserva {
+#ifndef DTReservaIndividual_H
+#define DTReservaIndividual_H
+class DTReservaIndividual : public DTReserva {
+	private:
 	bool pagado;
+	public:
+		
+
 };
+#endif DTReservaIndividual_H
