@@ -189,8 +189,8 @@ int main() {
                         loop = false;
                         cout << "Ingrese fecha Check-Out formato DD/MM/AAAA: "<<endl;
                         cin >> ano_;
-                        dia_ = strtok(ano_,"-,/ \");
-                        mes_ = strtok(ano_,"-,/ \");
+                        dia_ = strtok(ano_,"-,/ \()");
+                        mes_ = strtok(ano_,"-,/ \()");
                         if(dia_ < 1 || dia_ > 31 || mes_ < 1 || mes_ > 12 || ano_ < 1500 || ano_ > 3500){
                             loop = true;
                             cout << "Error al ingresar la fecha de Check-Out" << endl;
