@@ -1,4 +1,4 @@
-#include "datatypeDTHuesped.h"
+#include "DTHuesped.h"
 
 // Constructor
 DTHuesped::DTHuesped(std::string nombre, std::string email, bool esFinger) {

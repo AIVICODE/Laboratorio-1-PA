@@ -1,9 +1,9 @@
 #ifndef DATATYPEDTRESERVAINDIVIDUAL_H
 #define DATATYPEDTRESERVAINDIVIDUAL_H
 
-#include "datatypeDTFecha.h"
-#include "datatypeEstadoReserva.h"
-#include "datatypeDTreserva.h"
+#include "DTFecha.h"
+#include "EstadoReserva.h"
+#include "DTreserva.h"
 
 class DTReservaIndividual : public DTReserva {
 private:

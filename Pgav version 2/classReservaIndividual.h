@@ -2,8 +2,8 @@
 #define RESERVAINDIVIDUAL_H
 
 #include "classReserva.h"
-#include "datatypeDTHuesped.h"
-#include "datatypeDTFecha.h"
+#include "DTHuesped.h"
+#include "DTFecha.h"
 
 class ReservaIndividual : public Reserva {
 private:

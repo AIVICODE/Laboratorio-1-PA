@@ -3,13 +3,13 @@
 #include <list>
 #include <string>
 #include <vector>
-#include "datatypeDTHuesped.h"
-#include "datatypeDTHabitacion.h"
-#include "datatypeDTreserva.h"
+#include "DTHuesped.h"
+#include "DTHabitacion.h"
+#include "DTreserva.h"
 #include "define.h"
 #include "classHuesped.h"
-#include "datatypeDTReservaIndividual.h"
-#include "datatypeDTREservaGrupal.h"
+#include "DTReservaIndividual.h"
+#include "DTREservaGrupal.h"
 #include "DTHuesped.cpp"
 
 class Systema {
@@ -98,6 +98,8 @@ public:
         reservas.push_back(nuevareserva);
     
         }
+
+    
     
 };
 

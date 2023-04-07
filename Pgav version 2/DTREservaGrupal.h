@@ -2,10 +2,10 @@
 #define DATATYPEDTRESERVAGRUPAL_H
 #include <vector>
 #include <string.h>
-#include "datatypeDTHuesped.h"
-#include "datatypeDTFecha.h"
-#include "datatypeEstadoReserva.h"
-#include "datatypeDTreserva.h"
+#include "DTHuesped.h"
+#include "DTFecha.h"
+#include "EstadoReserva.h"
+#include "DTreserva.h"
 class DTReservaGrupal : public DTReserva {
 private:
     std::vector<DTHuesped*> huespedes;

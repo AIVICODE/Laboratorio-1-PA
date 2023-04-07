@@ -1,4 +1,4 @@
-#include "datatypeEstadoReserva.h"
+#include "EstadoReserva.h"
 
 EstadoReserva::EstadoReserva(int estado) {
     switch (estado) {

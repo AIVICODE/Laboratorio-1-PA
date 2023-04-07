@@ -1,8 +1,8 @@
 #ifndef DATATYPEDTRESERVA_H
 #define DATATYPEDTRESERVA_H
 
-#include "datatypeDTFecha.h"
-#include "datatypeEstadoReserva.h"
+#include "DTFecha.h"
+#include "EstadoReserva.h"
 
 class DTReserva {
 protected:

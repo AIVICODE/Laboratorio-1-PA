@@ -1,8 +1,8 @@
 #ifndef CLASSRESERVA_H
 #define CLASSRESERVA_H
 
-#include "datatypeDTFecha.h"
-#include "datatypeDTreserva.h"
+#include "DTFecha.h"
+#include "DTreserva.h"
 #include "classHabitacion.h"
 #include "classHuesped.h"
 
