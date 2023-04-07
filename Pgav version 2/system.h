@@ -104,6 +104,7 @@ public:
         if (grupal->getHuespedes().size() <= 1) {
             throw std::invalid_argument("La reserva grupal debe tener al menos dos huespedes.");
         }
+<<<<<<< HEAD
         // Generar codigo de reserv
 
 
@@ -115,6 +116,9 @@ public:
         throw std::invalid_argument("Tipo de reserva desconocido.");
     }
 }
+=======
+
+>>>>>>> c071f8b (Algunos cambios a los nombres)
     
     
 };
