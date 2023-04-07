@@ -12,6 +12,7 @@ int main() {
     bool loop = false;
     bool salir = false;
     int input=0;
+
     while (!salir) {
         cout << endl;
         cout << "<< Bienvenido al sistema de gestión de hostel >>" << endl;
@@ -217,27 +218,25 @@ int main() {
                                 break;
                         }
                     }while(loop = true);
-                    
-                   if (option==1){
-                        bool pago;
-                        int cond;
-                        do{
-                            loop = false;
-                            cout << "Pago la reserva? 1)si 2)no" << endl;
-                            cin >> cond;
-                            switch(cond){
-                                case 1:
-                                    pago = true;
-                                    break;
-                                case 2:
-                                    pago = false;
-                                    break;
-                                default:
-                                    cout << "El valor ingresado no es valido, Vuelva a ingresar el dato" << endl;
-                                    loop = true;
-                            }
-                        }while(loop == true);
-                    }
+                    bool pago;
+                    int cond;
+                    do{
+                        loop = false;
+                        cout << "Pago la reserva? 1)si 2)no" << endl;
+                        cin >> cond;
+                        switch(cond){
+                            case 1:
+                                pago = true;
+                                break;
+                            case 2:
+                                pago = false;
+                                break;
+                            default:
+                                cout << "El valor ingresado no es valido, Vuelva a ingresar el dato" << endl;
+                                loop = true;
+                        }
+                    }while(loop == true);
+
                     cout << "Email: " << mail << endl;
                     cout << "Fecha de Check-In: " << dia << "/" << mes << "/" << ano << endl;
                     cout << "Fecha de Check-Out: " << dia_ << "/" << mes_ << "/" << ano_ << endl;
@@ -255,7 +254,7 @@ int main() {
                     else{
                         cout << "Grupal" << endl;
                     }
-                    cout << "¿Son estos datos correctos? (1: si / 0: no) :"
+                    cout << "¿Son estos datos correctos? (1: si / 0: no) :";
                     cin >> input;
                     switch(input){
                         case 1:
@@ -269,13 +268,14 @@ int main() {
                             break;
                     }  
                 }while(loop == true);
-                try {
-                    systema.registrarReserva(mail, new DTReservaIndividual(codigo, DTFecha(dia,mes,ano), DTFecha(dia_,mes_,ano_), EstadoReserva(0), habitacion,pago));
-                    cout << "Reserva agregada" << endl;
-                    codigo++;
-                } catch(invalid_argument& e) {
-                    cout << "Error: " << e.what() << endl;
-                }
+                if (option==1){
+                    try {
+                        systema.registrarReserva(mail, new DTReservaIndividual(codigo, DTFecha(dia,mes,ano), DTFecha(dia_,mes_,ano_), EstadoReserva(0), habitacion,pago));
+                        cout << "Reserva agregada" << endl;
+                        codigo++;
+                    } catch(invalid_argument& e) {
+                        cout << "Error: " << e.what() << endl;
+                    }
                }else{
                 try {
                         std::vector<DTHuesped*> ingresanHuespedes;
@@ -324,7 +324,7 @@ int main() {
                 cout << "Opción inválida, por favor intente de nuevo" << endl;
                 break;
             }
-        }
+        }    
     cout << endl;
     }
 
