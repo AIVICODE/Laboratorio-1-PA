@@ -11,6 +11,7 @@ int main() {
     Systema systema;
     bool loop = false;
     bool salir = false;
+    int input=0;
     while (!salir) {
         cout << endl;
         cout << "<< Bienvenido al sistema de gestión de hostel >>" << endl;
@@ -45,7 +46,8 @@ int main() {
                     do{
                         loop = false;
                         cout << "El huésped es tecnopacker? (1: si / 0: no): ";
-                        switch(input()){
+                        cin >> input;
+                        switch(input){
                             case 1:
                                 esFinger = 1;
                                 break;
@@ -70,7 +72,8 @@ int main() {
                          cout << "no" << endl;
                     }
                     cout << "¿Estos datos son correctos? (1: si / 0: no) :";
-                    switch(input()){
+                    cin >> input;
+                    switch(input){
                             case 1:
                                 break;
                             case 0:
@@ -109,7 +112,8 @@ int main() {
                     cout << "Precio de Habitación: " << precio << endl;
                     cout << "Capacidad de Habitación: " << capacidad << endl;
                     cout << "¿Son estos datos correctos? (1: si / 0: no) :";
-                     switch(input()){
+                    cin >> input; 
+                    switch(input){
                             case 1:
                                 break;
                             case 0:
@@ -252,7 +256,8 @@ int main() {
                         cout << "Grupal" << endl;
                     }
                     cout << "¿Son estos datos correctos? (1: si / 0: no) :"
-                    switch(input()){
+                    cin >> input;
+                    switch(input){
                         case 1:
                             break;
                         case 0:
