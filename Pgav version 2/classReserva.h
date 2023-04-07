@@ -18,60 +18,31 @@ protected:
     Huesped* huesped_;
 
 public:
-    Reserva(int codigo, DTFecha checkIn, DTFecha checkOut, EstadoReserva estado, Habitacion* habitacion)
-        : codigo(codigo), checkIn(checkIn), checkOut(checkOut), estado(estado), habitacion_(habitacion) {
-        calcularCosto();
-    }
-
+    Reserva(int codigo, DTFecha checkIn, DTFecha checkOut, EstadoReserva estado, Habitacion* habitacion); 
+     
     virtual ~Reserva() {}
 
-    int getCodigo() const {
-        return codigo;
-    }
+    int getCodigo() const;
 
-    void setCodigo(int codigo) {
-        this->codigo = codigo;
-    }
+    void setCodigo(int codigo);
 
-    DTFecha getCheckIn() const {
-        return checkIn;
-    }
+    DTFecha getCheckIn() const;
 
-    void setCheckIn(DTFecha checkIn) {
-        this->checkIn = checkIn;
-        calcularCosto();
-    }
+    void setCheckIn(DTFecha checkIn) ;
 
-    DTFecha getCheckOut() const {
-        return checkOut;
-    }
+    DTFecha getCheckOut() const ;
 
-    void setCheckOut(DTFecha checkOut) {
-        this->checkOut = checkOut;
-        calcularCosto();
-    }
+    void setCheckOut(DTFecha checkOut) ;
 
-    EstadoReserva getEstado() const {
-        return estado;
-    }
+    EstadoReserva getEstado() const ;
 
-    void setEstado(EstadoReserva estado) {
-        this->estado = estado;
-    }
+    void setEstado(EstadoReserva estado) ;
 
-    float getCosto() const {
-        return costo;
-    }
+    float getCosto() const ;
 
-    void setCosto(float costo) {
-        this->costo = costo;
-    }
+    void setCosto(float costo) ;
 
-    virtual float calcularCosto() {
-        int cantDias = checkOut - checkIn; // suponiendo que se sobrecargó el operador "-" para fechas
-        costo = cantDias * habitacion_->getPrecio(); // obteniendo el precio de la habitación a través del getter
-        return costo;
-    }
+    virtual float calcularCosto();
 };
 
 #endif

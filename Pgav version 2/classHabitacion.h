@@ -7,34 +7,16 @@ private:
     float precio;
     int capacidad;
 public:
-    Habitacion(int numero, float precio, int capacidad) {
-        this->numero = numero;
-        this->precio = precio;
-        this->capacidad = capacidad;
-    }
+    Habitacion(int numero, float precio, int capacidad);
+    int getNumero() const;
 
-    int getNumero() const {
-        return numero;
-    }
+    void setNumero(int numero);
+    float getPrecio() const ;
 
-    void setNumero(int numero) {
-        this->numero = numero;
-    }
+    void setPrecio(float precio);
 
-    float getPrecio() const {
-        return precio;
-    }
+    int getCapacidad() const;
 
-    void setPrecio(float precio) {
-        this->precio = precio;
-    }
-
-    int getCapacidad() const {
-        return capacidad;
-    }
-
-    void setCapacidad(int capacidad) {
-        this->capacidad = capacidad;
-    }
+    void setCapacidad(int capacidad);
 };
 #endif

@@ -10,6 +10,7 @@
 #include "classHuesped.h"
 #include "datatypeDTReservaIndividual.h"
 #include "datatypeDTREservaGrupal.h"
+#include "DTHuesped.cpp"
 
 class Systema {
 private:
