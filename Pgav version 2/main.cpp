@@ -3,7 +3,7 @@
 #include <sstream>
 #include <cstring>
 #include <stdexcept>
-#include "datatypeEstadoReserva.h"
+#include "EstadoReserva.h"
 #include "system.h"
 
 
