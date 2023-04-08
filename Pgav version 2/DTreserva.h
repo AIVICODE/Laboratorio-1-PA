@@ -6,6 +6,7 @@
 
 class DTReserva {
 protected:
+    static int ultimoCodigo;
     int codigo;
     DTFecha checkIn;
     DTFecha checkOut;
@@ -13,8 +14,8 @@ protected:
     float costo;
     int habitacion;
 public:
-    DTReserva(int codigo, DTFecha checkIn, DTFecha checkOut, EstadoReserva estado, int habitacion)
-        : codigo(codigo), checkIn(checkIn), checkOut(checkOut), estado(estado), habitacion(habitacion){}
+    DTReserva(DTFecha checkIn, DTFecha checkOut, EstadoReserva estado, int habitacion)
+        :checkIn(checkIn), checkOut(checkOut), estado(estado), habitacion(habitacion){}
 
     virtual ~DTReserva() {}
     int getCodigo() const { return codigo; }

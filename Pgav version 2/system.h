@@ -98,12 +98,19 @@ public:
     // Verificar el tipo de reserva
     if (DTReservaIndividual* individual = dynamic_cast<DTReservaIndividual*>(reserva)) {
         // Manejar la reserva individual
-        DTReserva* dtReserva = new DTReserva(individual->getCodigo(), individual->getCheckIn(), individual->getCheckOut(), individual->getEstado(), individual->getHabitacion());
+        DTReserva* dtReserva = new DTReserva(individual->getCheckIn(), individual->getCheckOut(), individual->getEstado(), individual->getHabitacion());
         reservas.push_back(dtReserva);
     } else if (DTReservaGrupal* grupal = dynamic_cast<DTReservaGrupal*>(reserva)) {
-        // Manejar la reserva grupal
-        // ...
-    } else {
+         // Manejar la reserva grupal
+        if (grupal->getHuespedes().size() <= 1) {
+            throw std::invalid_argument("La reserva grupal debe tener al menos dos huespedes.");
+        }
+        // Crear nueva reserva grupal
+        DTReserva* dtReserva = new DTReserva(grupal->getCheckIn(), grupal->getCheckOut(), 0, grupal->getHabitacion());
+
+        // Agregar la reserva a la lista de reservas
+        reservas.push_back(dtReserva);
+    }  else {
         throw std::invalid_argument("Tipo de reserva desconocido.");
     }
 }
