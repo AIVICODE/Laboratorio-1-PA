@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <sstream>
+#include <cstring>
 #include <stdexcept>
 #include "datatypeEstadoReserva.h"
 #include "system.h"
@@ -31,19 +33,21 @@ int main() {
 
         switch (opcion) {
             case 1: {
-                
+                string nombre;
+                string email;
+                bool esFinger;
                 do{
                     loop = false;
                     
                     cout << "Ingrese el nombre del huésped: ";
-                    string nombre;
+                   
                     cin >> nombre;
 
                     cout << "Ingrese el email del huésped: ";
-                    string email;
+                    
                     cin >> email;
 
-                    bool esFinger;
+                   
                     do{
                         loop = false;
                         cout << "El huésped es tecnopacker? (1: si / 0: no): ";
@@ -109,6 +113,7 @@ int main() {
                     cout << "Ingrese capacidad de la habitacion: ";
                     cin >> capacidad;
                     
+                    cout << endl;
                     cout << "Nro de Habitación: " << numero << endl;
                     cout << "Precio de Habitación: " << precio << endl;
                     cout << "Capacidad de Habitación: " << capacidad << endl;
@@ -180,10 +185,11 @@ int main() {
 
                     do{
                         loop = false;
-                        cout << "Ingrese fecha Check-In formato DD/MM/AAAA: "<<endl;
+                        cout << "Ingrese fecha Check-In formato DD MM AAAA: "<<endl;
+                        cin >> dia;
+                        cin >> mes;
                         cin >> ano;
-                        dia = strtok(ano,"-,/ \()");
-                        mes = strtok(ano,"-,/ \()");
+
                         if(dia < 1 || dia > 31 || mes < 1 || mes > 12 || ano < 1500 || ano > 3500){
                             loop = true;
                             cout << "Error al ingresar la fecha de Check-In" << endl;
@@ -192,10 +198,11 @@ int main() {
 
                     do{
                         loop = false;
-                        cout << "Ingrese fecha Check-Out formato DD/MM/AAAA: "<<endl;
+                        cout << "Ingrese fecha Check-Out formato DD MM AAAA: "<<endl;
+                        cin >> dia_;
+                        cin >> mes_;
                         cin >> ano_;
-                        dia_ = strtok(ano_,"-,/ \()");
-                        mes_ = strtok(ano_,"-,/ \()");
+
                         if(dia_ < 1 || dia_ > 31 || mes_ < 1 || mes_ > 12 || ano_ < 1500 || ano_ > 3500){
                             loop = true;
                             cout << "Error al ingresar la fecha de Check-Out" << endl;
@@ -217,7 +224,7 @@ int main() {
                                 cout << "Error, opcion ingresada no es valida" << endl;
                                 break;
                         }
-                    }while(loop = true);
+                    }while(loop == true);
                     bool pago;
                     int cond;
                     do{
@@ -237,6 +244,7 @@ int main() {
                         }
                     }while(loop == true);
 
+                    cout << endl;
                     cout << "Email: " << mail << endl;
                     cout << "Fecha de Check-In: " << dia << "/" << mes << "/" << ano << endl;
                     cout << "Fecha de Check-Out: " << dia_ << "/" << mes_ << "/" << ano_ << endl;
