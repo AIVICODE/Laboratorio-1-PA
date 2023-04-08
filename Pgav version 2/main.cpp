@@ -190,9 +190,8 @@ int main() {
                         cin >> mes;
                         cin >> ano;
 
-                        if(dia < 1 || dia > 31 || mes < 1 || mes > 12 || ano < 1500 || ano > 3500){
-                            loop = true;
-                            cout << "Error al ingresar la fecha de Check-In" << endl;
+                        if(dia < 1 || dia > 31 || mes < 1 || mes > 12 || ano < 1900){
+                            throw invalid_argument("Formato No Respetado");
                         }
                     }while(loop == true);
 
@@ -203,9 +202,8 @@ int main() {
                         cin >> mes_;
                         cin >> ano_;
 
-                        if(dia_ < 1 || dia_ > 31 || mes_ < 1 || mes_ > 12 || ano_ < 1500 || ano_ > 3500){
-                            loop = true;
-                            cout << "Error al ingresar la fecha de Check-Out" << endl;
+                        if(dia_ < 1 || dia_ > 31 || mes_ < 1 || mes_ > 12 || ano_ < 1900){
+                            throw invalid_argument("Formato No Respetado");
                         }
                     }while(loop == true);
 
