@@ -94,11 +94,19 @@ public:
     if (dtHabitacion == nullptr) {
         throw std::invalid_argument("La habitacion no esta registrada en el sistema.");
     }
-        DTReserva* nuevareserva = new DTReserva(reserva->getCodigo(),reserva->getCheckIn(),reserva->getCheckOut(),reserva->getEstado(),reserva->getHabitacion());
-        reservas.push_back(nuevareserva);
-    
-        }
 
+    // Verificar el tipo de reserva
+    if (DTReservaIndividual* individual = dynamic_cast<DTReservaIndividual*>(reserva)) {
+        // Manejar la reserva individual
+        DTReserva* dtReserva = new DTReserva(individual->getCodigo(), individual->getCheckIn(), individual->getCheckOut(), individual->getEstado(), individual->getHabitacion());
+        reservas.push_back(dtReserva);
+    } else if (DTReservaGrupal* grupal = dynamic_cast<DTReservaGrupal*>(reserva)) {
+        // Manejar la reserva grupal
+        // ...
+    } else {
+        throw std::invalid_argument("Tipo de reserva desconocido.");
+    }
+}
     
     
 };
