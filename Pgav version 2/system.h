@@ -35,7 +35,7 @@ public:
 
     void agregarHuesped(std::string nombre, std::string email, bool esFinger) {
         for (auto huesped : huespedes) {
-            if (huesped->getEmail() == email) {
+            if (huesped->getEmail().compare(email) == 0) {
                 throw std::invalid_argument("Ya existe un huesped registrado con el mismo email.");
             }
         }
@@ -74,7 +74,7 @@ public:
     // Buscamos el huesped correspondiente al email dado en la lista de huespedes del sistema
     DTHuesped* dtHuesped = nullptr;
     for (auto huesped : huespedes) {
-        if (huesped->getEmail() == email) {
+        if (huesped->getEmail().compare(email) == 0) {
             dtHuesped = huesped;
             break;
         }
