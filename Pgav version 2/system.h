@@ -104,7 +104,6 @@ public:
         if (grupal->getHuespedes().size() <= 1) {
             throw std::invalid_argument("La reserva grupal debe tener al menos dos huespedes.");
         }
-        // Generar codigo de reserv
 
 
         DTReservaGrupal* nuevaReservaGrupal = new DTReservaGrupal(grupal->getCheckIn(), grupal->getCheckOut(),EstadoReserva(0), grupal->getHabitacion(), grupal->getHuespedes());
@@ -115,7 +114,20 @@ public:
         throw std::invalid_argument("Tipo de reserva desconocido.");
     }
 }
-    
+    DTReserva** obtenerReservas(DTFecha fecha, int& cantReservas) {
+    std::vector<DTReserva*> reservasFecha;
+    for (DTReserva* reserva : reservas) {
+        if (reserva->getCheckIn() == fecha) {
+            reservasFecha.push_back(reserva);
+        }
+    }
+    cantReservas = reservasFecha.size();
+    DTReserva** arregloReservas = new DTReserva*[cantReservas];
+    for (int i = 0; i < cantReservas; i++) {
+        arregloReservas[i] = reservasFecha[i];
+    }
+    return arregloReservas;
+}
     
 };
 

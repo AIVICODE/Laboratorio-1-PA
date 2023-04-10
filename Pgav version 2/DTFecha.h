@@ -45,11 +45,12 @@ void DTFecha::imprimir() const {
     std::cout << dia_ << "/" << mes_ << "/" << anio_ << std::endl;
 }
 
-int DTFecha::operator-(const DTFecha& fecha) const {
-    // calcular la diferencia en días entre las dos fechas
-    int dias1 = anio_*365 + mes_*30 + dia_;
-    int dias2 = fecha.anio_*365 + fecha.mes_*30 + fecha.dia_;
-    return std::abs(dias1 - dias2);
+bool operator==(const DTFecha& fecha1, const DTFecha& fecha2) {
+    return (fecha1.getDia() == fecha2.getDia()) &&
+           (fecha1.getMes() == fecha2.getMes()) &&
+           (fecha1.getAnio() == fecha2.getAnio());
 }
+
+
 
 #endif

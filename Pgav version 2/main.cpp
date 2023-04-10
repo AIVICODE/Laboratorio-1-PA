@@ -5,7 +5,7 @@
 #include <stdexcept>
 #include "EstadoReserva.h"
 #include "system.h"
-
+#include "operator.cpp"
 
 using namespace std;
 
@@ -14,6 +14,7 @@ int main() {
     bool loop = false;
     bool salir = false;
     int input=0;
+
 
     while (!salir) {
         cout << endl;
@@ -30,7 +31,7 @@ int main() {
         cout << "Ingrese la opción deseada > ";
         cin >> opcion;
         cout << endl;
-
+        
         switch (opcion) {
             case 1: {
                 string nombre;
@@ -284,7 +285,7 @@ int main() {
                     }
                }else{
                 try {
-                        std::vector<DTHuesped*> ingresanHuespedes;
+                        std::vector<DTHuesped> ingresanHuespedes;
                         
                         bool agregar=true;
                         do {
@@ -317,7 +318,28 @@ int main() {
             }
 
             case 6: {
-                // Lógica para obtener reservas
+                std::vector<DTReserva*> reservas;
+                int cantReservas;
+                int dia1,mes1,ano1;
+                do{
+                        loop = false;
+                        cout << "Ingrese fecha Check-Out formato DD MM AAAA: "<<endl;
+                        cin >> dia1;
+                        cin >> mes1;
+                        cin >> ano1;
+
+                        if(dia1 < 1 || dia1 > 31 || mes1 < 1 || mes1 > 12 || ano1 < 1900){
+                            throw invalid_argument("Formato No Respetado");
+                        }
+                    }while(loop == true);
+                DTReserva** res = systema.obtenerReservas(DTFecha(dia1,mes1,ano1), cantReservas);
+                for (int i = 0; i < cantReservas; i++) {
+                DTReserva* r = dynamic_cast<DTReserva*>(res[i]);
+                std::cout << *r << std::endl;
+                }
+                delete[] res;
+    
+                    
                 break;
             }
 
