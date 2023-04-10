@@ -35,7 +35,7 @@ public:
 
     void agregarHuesped(std::string nombre, std::string email, bool esFinger) {
         for (auto huesped : huespedes) {
-            if (huesped->getEmail().compare(email) == 0) {
+            if (huesped->getEmail() == email) {
                 throw std::invalid_argument("Ya existe un huesped registrado con el mismo email.");
             }
         }
@@ -74,7 +74,7 @@ public:
     // Buscamos el huesped correspondiente al email dado en la lista de huespedes del sistema
     DTHuesped* dtHuesped = nullptr;
     for (auto huesped : huespedes) {
-        if (huesped->getEmail().compare(email) == 0) {
+        if (huesped->getEmail() == email) {
             dtHuesped = huesped;
             break;
         }
@@ -98,19 +98,12 @@ public:
     // Verificar el tipo de reserva
     if (DTReservaIndividual* individual = dynamic_cast<DTReservaIndividual*>(reserva)) {
         // Manejar la reserva individual
-<<<<<<< HEAD
         DTReservaIndividual* nuevareservaindividual = new DTReservaIndividual(individual->getCheckIn(), individual->getCheckOut(), individual->getEstado(), individual->getHabitacion(),individual ->getPagado());
-=======
-        DTReserva* dtReserva = new DTReserva(individual->getCheckIn(), individual->getCheckOut(), individual->getEstado(), individual->getHabitacion());
-        reservas.push_back(dtReserva);
->>>>>>> 23fa48b (funcion registro:Reserva Grupal)
     } else if (DTReservaGrupal* grupal = dynamic_cast<DTReservaGrupal*>(reserva)) {
          // Manejar la reserva grupal
         if (grupal->getHuespedes().size() <= 1) {
             throw std::invalid_argument("La reserva grupal debe tener al menos dos huespedes.");
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
         // Generar codigo de reserv
 
 
@@ -119,20 +112,9 @@ public:
         // Agregar la reserva a la lista de reservas
     } 
  else {
-=======
-        // Crear nueva reserva grupal
-        DTReserva* dtReserva = new DTReserva(grupal->getCheckIn(), grupal->getCheckOut(), 0, grupal->getHabitacion());
-
-        // Agregar la reserva a la lista de reservas
-        reservas.push_back(dtReserva);
-    }  else {
->>>>>>> 23fa48b (funcion registro:Reserva Grupal)
         throw std::invalid_argument("Tipo de reserva desconocido.");
     }
 }
-=======
-
->>>>>>> c071f8b (Algunos cambios a los nombres)
     
     
 };
