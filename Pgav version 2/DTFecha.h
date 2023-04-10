@@ -11,7 +11,9 @@ public:
     int getMes() const;
     int getAnio() const;
     void imprimir() const;
-    int operator-(const DTFecha& fecha) const;
+    bool operator==(const DTFecha& fecha) const; // Sobrecarga del operador ==
+    bool operator<=(const DTFecha& fecha) const; // Sobrecarga del operador <=
+    bool operator>=(const DTFecha& fecha) const; // Sobrecarga del operador >=
 
 private:
     int dia_;
@@ -45,12 +47,38 @@ void DTFecha::imprimir() const {
     std::cout << dia_ << "/" << mes_ << "/" << anio_ << std::endl;
 }
 
-bool operator==(const DTFecha& fecha1, const DTFecha& fecha2) {
-    return (fecha1.getDia() == fecha2.getDia()) &&
-           (fecha1.getMes() == fecha2.getMes()) &&
-           (fecha1.getAnio() == fecha2.getAnio());
+
+
+bool DTFecha::operator==(const DTFecha& fecha) const {
+    return (dia_ == fecha.getDia()) &&
+           (mes_ == fecha.getMes()) &&
+           (anio_ == fecha.getAnio());
 }
 
+bool DTFecha::operator<=(const DTFecha& fecha) const {
+    if (anio_ < fecha.getAnio()) {
+        return true;
+    } else if (anio_ == fecha.getAnio()) {
+        if (mes_ < fecha.getMes()) {
+            return true;
+        } else if (mes_ == fecha.getMes()) {
+            return dia_ <= fecha.getDia();
+        }
+    }
+    return false;
+}
 
+bool DTFecha::operator>=(const DTFecha& fecha) const {
+    if (anio_ > fecha.getAnio()) {
+        return true;
+    } else if (anio_ == fecha.getAnio()) {
+        if (mes_ > fecha.getMes()) {
+            return true;
+        } else if (mes_ == fecha.getMes()) {
+            return dia_ >= fecha.getDia();
+        }
+    }
+    return false;
+}
 
 #endif

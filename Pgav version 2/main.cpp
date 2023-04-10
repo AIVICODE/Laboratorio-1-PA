@@ -138,12 +138,16 @@ int main() {
                 } catch(invalid_argument& e) {
                     cout << "Error: " << e.what() << endl;
                 }
+                
                 break;
             }
 
             case 3: {
                 int cantHuespedes = 0;
                 DTHuesped** huespedes = systema.obtenerHuespedes(cantHuespedes);
+                if(cantHuespedes==0){
+                    cout<< "no hay huespedes registrados"<<endl;
+                }else{
                 for(int i = 0; i < cantHuespedes; i++) {
                     cout << "Huesped " << i+1 << ":" << endl;
                     cout << "Nombre: " << huespedes[i]->getNombre() << endl;
@@ -154,14 +158,23 @@ int main() {
                         cout << "No tiene Tecnopacker" << endl;
                     delete huespedes[i];
                 }
+                }
                 delete[] huespedes;
-                break;
+                getchar();
+                   std::cout << "Presiona Enter para continuar..." << std::endl;
+                    // Leer una línea en blanco (hasta que se presione Enter)
+                    std::string entrada;
+                    std::getline(std::cin, entrada);
+
                 break;
             }
 
             case 4: {
                  int cantHabitaciones = 0;
                 DTHabitacion** habitaciones = systema.obtenerHabitaciones(cantHabitaciones);
+                if(cantHabitaciones==0){
+                    cout<<"no hay habitaciones registradas"<<endl;
+                }else{
                 for(int i = 0; i < cantHabitaciones; i++) {
                     cout << "Habitacion " << i+1 << ":" << endl;
                     cout << "Numero: " << habitaciones[i]->getNumero() << endl;
@@ -169,7 +182,13 @@ int main() {
                     cout << "Capacidad: " << habitaciones[i]->getCapacidad() << endl;
                     delete habitaciones[i];
                 }
+                }
                 delete[] habitaciones;
+                getchar();
+                   std::cout << "Presiona Enter para continuar..." << std::endl;
+                    // Leer una línea en blanco (hasta que se presione Enter)
+                    std::string entrada;
+                    std::getline(std::cin, entrada);
                 break;
             }
 
@@ -312,7 +331,11 @@ int main() {
                 }
                }
                
-                
+                getchar();
+                   std::cout << "Presiona Enter para continuar..." << std::endl;
+                    // Leer una línea en blanco (hasta que se presione Enter)
+                    std::string entrada;
+                    std::getline(std::cin, entrada);
             
                 break;
             }
@@ -323,7 +346,7 @@ int main() {
                 int dia1,mes1,ano1;
                 do{
                         loop = false;
-                        cout << "Ingrese fecha Check-Out formato DD MM AAAA: "<<endl;
+                        cout << "Ingrese fecha CheckIn formato DD MM AAAA: "<<endl;
                         cin >> dia1;
                         cin >> mes1;
                         cin >> ano1;
@@ -339,7 +362,11 @@ int main() {
                 }
                 delete[] res;
     
-                    
+                    getchar();
+                   std::cout << "Presiona Enter para continuar..." << std::endl;
+                    // Leer una línea en blanco (hasta que se presione Enter)
+                    std::string entrada;
+                    std::getline(std::cin, entrada);
                 break;
             }
 

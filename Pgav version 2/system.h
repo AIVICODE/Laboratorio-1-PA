@@ -98,7 +98,7 @@ public:
     // Verificar el tipo de reserva
     if (DTReservaIndividual* individual = dynamic_cast<DTReservaIndividual*>(reserva)) {
         // Manejar la reserva individual
-        DTReservaIndividual* nuevareservaindividual = new DTReservaIndividual(individual->getCheckIn(), individual->getCheckOut(), individual->getEstado(), individual->getHabitacion(),individual ->getPagado());
+        DTReserva* reservas = new DTReservaIndividual(individual->getCheckIn(), individual->getCheckOut(), individual->getEstado(), individual->getHabitacion(),individual ->getPagado());
     } else if (DTReservaGrupal* grupal = dynamic_cast<DTReservaGrupal*>(reserva)) {
          // Manejar la reserva grupal
         if (grupal->getHuespedes().size() <= 1) {
@@ -106,7 +106,7 @@ public:
         }
 
 
-        DTReservaGrupal* nuevaReservaGrupal = new DTReservaGrupal(grupal->getCheckIn(), grupal->getCheckOut(),EstadoReserva(0), grupal->getHabitacion(), grupal->getHuespedes());
+        DTReserva* reservas = new DTReservaGrupal(grupal->getCheckIn(), grupal->getCheckOut(),EstadoReserva(0), grupal->getHabitacion(), grupal->getHuespedes());
 
         // Agregar la reserva a la lista de reservas
     } 
@@ -114,21 +114,33 @@ public:
         throw std::invalid_argument("Tipo de reserva desconocido.");
     }
 }
-    DTReserva** obtenerReservas(DTFecha fecha, int& cantReservas) {
-    std::vector<DTReserva*> reservasFecha;
-    for (DTReserva* reserva : reservas) {
+ DTReserva** obtenerReservas(DTFecha fecha, int& cantReservas) {
+    // Creamos un arreglo de DTReserva** con el tamaño máximo posible
+    DTReserva** resultado = new DTReserva*[reservas.size()];
+    cantReservas = 0;
+
+    // Copiamos las reservas correspondientes al arreglo y contamos la cantidad de reservas
+    for (auto reserva : reservas) {
+        cout << "entra";
         if (reserva->getCheckIn() == fecha) {
-            reservasFecha.push_back(reserva);
+            cout << "entra";
+            if (DTReservaIndividual* ind = dynamic_cast<DTReservaIndividual*>(reserva)) {
+                resultado[cantReservas] = new DTReservaIndividual(*ind);
+                cantReservas++;
+            } else if (DTReservaGrupal* grup = dynamic_cast<DTReservaGrupal*>(reserva)) {
+                int cantHuespedes = grup->getCantHuespedes();
+                DTHuesped** huespedes = new DTHuesped*[cantHuespedes];
+                for (int i = 0; i < cantHuespedes; i++) {
+                    huespedes[i] = new DTHuesped(grup->getHuespedes()[i]);
+                }
+                resultado[cantReservas] = new DTReservaGrupal(*grup);
+                cantReservas++;
+            }
         }
     }
-    cantReservas = reservasFecha.size();
-    DTReserva** arregloReservas = new DTReserva*[cantReservas];
-    for (int i = 0; i < cantReservas; i++) {
-        arregloReservas[i] = reservasFecha[i];
-    }
-    return arregloReservas;
-}
+    cout<<cantReservas;
     
+    return resultado;
+ }
 };
-
 #endif
