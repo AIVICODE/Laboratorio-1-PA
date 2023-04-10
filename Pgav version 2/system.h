@@ -119,7 +119,7 @@ public:
     // Copiamos las reservas correspondientes al arreglo y contamos la cantidad de reservas
     for (auto reserva : reservas) {
         cout << "entra";
-        if (reserva->getCheckIn() == fecha) {
+        if (reserva->getCheckIn() >= fecha && reserva->getCheckOut() <= fecha) {
             cout << "entra";
             if (DTReservaIndividual* ind = dynamic_cast<DTReservaIndividual*>(reserva)) {
                 resultado[cantReservas] = new DTReservaIndividual(*ind);
