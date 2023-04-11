@@ -14,7 +14,7 @@ int main() {
     bool loop = false;
     bool salir = false;
     bool seguir = true;
-    int input=0;
+    char input;
 
 
     while (!salir) {
@@ -55,10 +55,10 @@ int main() {
                         cout << "El huésped es tecnopacker? (1: si / 0: no): ";
                         cin >> input;
                         switch(input){
-                            case 1:
+                            case '1':
                                 esFinger = 1;
                                 break;
-                            case 0:
+                            case '0':
                                 esFinger = 0;
                                 break;
                             default:
@@ -81,9 +81,9 @@ int main() {
                     cout << "¿Estos datos son correctos? (1: si / 0: no) :";
                     cin >> input;
                     switch(input){
-                            case 1:
+                            case '1':
                                 break;
-                            case 0:
+                            case '0':
                                 loop = true;
                                 break;
                             default:
@@ -122,9 +122,9 @@ int main() {
                     cout << "¿Son estos datos correctos? (1: si / 0: no) :";
                     cin >> input; 
                     switch(input){
-                            case 1:
+                            case '1':
                                 break;
-                            case 0:
+                            case '0':
                                 loop = true;
                                 break;
                             default:
