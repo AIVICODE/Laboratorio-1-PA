@@ -14,7 +14,7 @@ public:
     bool operator==(const DTFecha& fecha) const; // Sobrecarga del operador ==
     bool operator<=(const DTFecha& fecha) const; // Sobrecarga del operador <=
     bool operator>=(const DTFecha& fecha) const; // Sobrecarga del operador >=
-
+    DTFecha() = default;
 private:
     int dia_;
     int mes_;

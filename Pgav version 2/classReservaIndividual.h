@@ -11,17 +11,17 @@ private:
     DTHuesped* huesped;
 
 public:
-    ReservaIndividual(int codigo, DTFecha checkIn, DTFecha checkOut, EstadoReserva estado, float costo, int habitacion, bool pagado, DTHuesped* huesped);
+    ReservaIndividual(DTFecha checkIn, DTFecha checkOut, EstadoReserva estado, bool pagado)
+    : Reserva(checkIn, checkOut, estado), pagado(pagado) {}
+    
 
-    bool getPagado() const;
-    void setPagado(bool pagado);
-    DTHuesped* getHuesped() const;
-    void setHuesped(DTHuesped* huesped);
+    bool getPagado() const { return pagado; }
+    void setPagado(bool pagado) { this->pagado = pagado; }
 
     float calcularCosto() override {
         // int cantDias = checkOut - checkIn; // suponiendo que se sobrecargó el operador "-" para fechas
         // costo = cantDias * habitacion.getPrecio(); // calculando el costo por días de la habitación
-        // return costo;
+        return 0;
     }
 };
 

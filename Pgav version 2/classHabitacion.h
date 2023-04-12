@@ -7,16 +7,40 @@ private:
     float precio;
     int capacidad;
 public:
-    Habitacion(int numero, float precio, int capacidad);
-    int getNumero() const;
+    // Constructor
+    Habitacion(int numero, float precio, int capacidad) {
+        // Constructor de Habitacion
+        // Asignar los valores de los parámetros a los miembros de datos correspondientes
+        this->numero = numero;
+        this->precio = precio;
+        this->capacidad = capacidad;
+    }
 
-    void setNumero(int numero);
-    float getPrecio() const ;
+    // Getters
+    int getNumero() const {
+        return numero;
+    }
 
-    void setPrecio(float precio);
+    float getPrecio() const {
+        return precio;
+    }
 
-    int getCapacidad() const;
+    int getCapacidad() const {
+        return capacidad;
+    }
 
-    void setCapacidad(int capacidad);
+    // Setters
+    void setNumero(int numero) {
+        this->numero = numero;
+    }
+
+    void setPrecio(float precio) {
+        this->precio = precio;
+    }
+
+    void setCapacidad(int capacidad) {
+        this->capacidad = capacidad;
+    }
 };
+
 #endif

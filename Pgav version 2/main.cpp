@@ -3,7 +3,6 @@
 #include <sstream>
 #include <cstring>
 #include <stdexcept>
-#include "EstadoReserva.h"
 #include "system.h"
 #include "operator.cpp"
 

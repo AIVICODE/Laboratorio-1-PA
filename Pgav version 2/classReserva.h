@@ -2,9 +2,9 @@
 #define CLASSRESERVA_H
 
 #include "DTFecha.h"
-#include "DTreserva.h"
 #include "classHabitacion.h"
 #include "classHuesped.h"
+#include "EstadoReserva.h"
 
 class Reserva {
 protected:
@@ -18,31 +18,59 @@ protected:
     Huesped* huesped_;
 
 public:
-    Reserva(int codigo, DTFecha checkIn, DTFecha checkOut, EstadoReserva estado, Habitacion* habitacion); 
+    Reserva(DTFecha checkIn, DTFecha checkOut, EstadoReserva estado)
+        : checkIn(checkIn), checkOut(checkOut), estado(estado) {
+        // Resto del código del constructor
+    }
      
     virtual ~Reserva() {}
 
-    int getCodigo() const;
+    int getCodigo() const {
+        return codigo;
+    }
 
-    void setCodigo(int codigo);
+    void setCodigo(int codigo) {
+        this->codigo = codigo;
+    }
 
-    DTFecha getCheckIn() const;
+    DTFecha getCheckIn() const {
+        return checkIn;
+    }
 
-    void setCheckIn(DTFecha checkIn) ;
+    void setCheckIn(DTFecha checkIn) {
+        this->checkIn = checkIn;
+    }
 
-    DTFecha getCheckOut() const ;
+    DTFecha getCheckOut() const {
+        return checkOut;
+    }
 
-    void setCheckOut(DTFecha checkOut) ;
+    void setCheckOut(DTFecha checkOut) {
+        this->checkOut = checkOut;
+    }
 
-    EstadoReserva getEstado() const ;
+    EstadoReserva getEstado() const {
+        return estado;
+    }
 
-    void setEstado(EstadoReserva estado) ;
+    void setEstado(EstadoReserva estado) {
+        this->estado = estado;
+    }
 
-    float getCosto() const ;
+    float getCosto() const {
+        return costo;
+    }
 
-    void setCosto(float costo) ;
+    void setCosto(float costo) {
+        this->costo = costo;
+    }
 
-    virtual float calcularCosto();
+    virtual float calcularCosto() {
+        // Implementación de la función calcularCosto()
+        // Puedes escribir el cálculo del costo según tus necesidades
+        // y actualizar el valor de costo en consecuencia
+        return costo;
+    }
 };
 
 #endif

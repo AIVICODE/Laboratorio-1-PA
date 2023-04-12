@@ -1,14 +1,18 @@
 #include "classReserva.h"
+#include "DTFecha.h"
+#include "EstadoReserva.h"
 
-Reserva::Reserva(int codigo, DTFecha checkIn, DTFecha checkOut, EstadoReserva estado, Habitacion* habitacion)
-    : codigo(codigo), checkIn(checkIn), checkOut(checkOut), estado(estado), habitacion_(habitacion) {
-    calcularCosto();
+Reserva::Reserva(DTFecha checkIn, DTFecha checkOut, EstadoReserva estado) {
+    this->checkIn = checkIn;
+    this->checkOut = checkOut;
+    this->estado = estado;
+    this->costo = 0.0;
+    this->habitacion_ = nullptr;
+    this->huesped_ = nullptr;
 }
 
-Reserva::~Reserva() {}
-
 int Reserva::getCodigo() const {
-    return codigo;
+    return this->codigo;
 }
 
 void Reserva::setCodigo(int codigo) {
@@ -16,25 +20,23 @@ void Reserva::setCodigo(int codigo) {
 }
 
 DTFecha Reserva::getCheckIn() const {
-    return checkIn;
+    return this->checkIn;
 }
 
 void Reserva::setCheckIn(DTFecha checkIn) {
     this->checkIn = checkIn;
-    calcularCosto();
 }
 
 DTFecha Reserva::getCheckOut() const {
-    return checkOut;
+    return this->checkOut;
 }
 
 void Reserva::setCheckOut(DTFecha checkOut) {
     this->checkOut = checkOut;
-    calcularCosto();
 }
 
 EstadoReserva Reserva::getEstado() const {
-    return estado;
+    return this->estado;
 }
 
 void Reserva::setEstado(EstadoReserva estado) {
@@ -42,7 +44,7 @@ void Reserva::setEstado(EstadoReserva estado) {
 }
 
 float Reserva::getCosto() const {
-    return costo;
+    return this->costo;
 }
 
 void Reserva::setCosto(float costo) {
@@ -50,7 +52,7 @@ void Reserva::setCosto(float costo) {
 }
 
 float Reserva::calcularCosto() {
-    int cantDias = checkOut - checkIn; // suponiendo que se sobrecargó el operador "-" para fechas
-    costo = cantDias * habitacion_->getPrecio(); // obteniendo el precio de la habitación a través del getter
-    return costo;
+    // Implementa el cálculo del costo de la reserva
+    // según la lógica de tu programa
+    return 0;
 }
