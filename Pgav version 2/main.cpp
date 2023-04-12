@@ -12,7 +12,8 @@ int main() {
     Systema systema;
     bool loop = false;
     bool salir = false;
-    int input=0;
+    bool seguir = true;
+    char input;
 
 
     while (!salir) {
@@ -53,10 +54,10 @@ int main() {
                         cout << "El huésped es tecnopacker? (1: si / 0: no): ";
                         cin >> input;
                         switch(input){
-                            case 1:
+                            case '1':
                                 esFinger = 1;
                                 break;
-                            case 0:
+                            case '0':
                                 esFinger = 0;
                                 break;
                             default:
@@ -79,9 +80,9 @@ int main() {
                     cout << "¿Estos datos son correctos? (1: si / 0: no) :";
                     cin >> input;
                     switch(input){
-                            case 1:
+                            case '1':
                                 break;
-                            case 0:
+                            case '0':
                                 loop = true;
                                 break;
                             default:
@@ -120,9 +121,9 @@ int main() {
                     cout << "¿Son estos datos correctos? (1: si / 0: no) :";
                     cin >> input; 
                     switch(input){
-                            case 1:
+                            case '1':
                                 break;
-                            case 0:
+                            case '0':
                                 loop = true;
                                 break;
                             default:
@@ -202,8 +203,6 @@ int main() {
                     cout << "Ingrese email: "<<endl;
                     cin >> mail;
 
-                    do{
-                        loop = false;
                         cout << "Ingrese fecha Check-In formato DD MM AAAA: "<<endl;
                         cin >> dia;
                         cin >> mes;
@@ -212,10 +211,7 @@ int main() {
                         if(dia < 1 || dia > 31 || mes < 1 || mes > 12 || ano < 1900){
                             throw invalid_argument("Formato No Respetado");
                         }
-                    }while(loop == true);
-
-                    do{
-                        loop = false;
+                 
                         cout << "Ingrese fecha Check-Out formato DD MM AAAA: "<<endl;
                         cin >> dia_;
                         cin >> mes_;
@@ -224,7 +220,6 @@ int main() {
                         if(dia_ < 1 || dia_ > 31 || mes_ < 1 || mes_ > 12 || ano_ < 1900){
                             throw invalid_argument("Formato No Respetado");
                         }
-                    }while(loop == true);
 
                     cout<< "Ingrese numero de habitacion"<<endl;
                     cin >> habitacion;
@@ -283,53 +278,66 @@ int main() {
                     cin >> input;
                     switch(input){
                         case 1:
+                        seguir = true;
                             break;
                         case 0:
-                            loop = true;
+                            cout << "¿Desea reingresar los datos? (1: si / 0: no) :";
+                            cin >> input;
+                                switch(input){
+                                    case 1:
+                                    loop = true;
+                                    break;
+                                    default:
+                                    seguir = false;
+                                    loop = false;
+                                    break;
+                                }
                             break;
                         default:
                             cout << "Error al registrar la reserva" << endl;
-                            loop = true;
+                            seguir = false;
+                            loop = false;
                             break;
                     }  
                 }while(loop == true);
-                if (option==1){
-                    try {
-                        systema.registrarReserva(mail, new DTReservaIndividual(DTFecha(dia,mes,ano), DTFecha(dia_,mes_,ano_), EstadoReserva(0), habitacion,pago));
-                        cout << "Reserva agregada" << endl;
-                        codigo++;
-                    } catch(invalid_argument& e) {
-                        cout << "Error: " << e.what() << endl;
+                if(seguir == true){
+                    if (option==1){
+                        try {
+                            systema.registrarReserva(mail, new DTReservaIndividual(DTFecha(dia,mes,ano), DTFecha(dia_,mes_,ano_), EstadoReserva(0), habitacion,pago));
+                            cout << "Reserva agregada" << endl;
+                            codigo++;
+                        } catch(invalid_argument& e) {
+                            cout << "Error: " << e.what() << endl;
+                        }
+                    }else{
+                        try {
+                                std::vector<DTHuesped> ingresanHuespedes;
+                                
+                                bool agregar=true;
+                                do {
+                                    std::string nombre, email;
+                                    bool tecnopacker;
+
+                                    std::cout << "Ingrese el nombre del huesped "<< ": "<<endl;
+                                    std::cin >> nombre;
+                                    std::cout << "Ingrese el email del huesped " << ": "<<endl;
+                                    std::cin >> email;
+                                    std::cout << "Es tecnopacker? (0 para No, 1 para Sí): "<<endl;
+                                    std::cin >> tecnopacker;
+                                    std::cout << "Desea agregar otro? (0 para No, 1 para Sí): "<<endl;
+                                    std::cin >> agregar;
+
+                                }while(agregar!=0);
+
+
+                            systema.registrarReserva(mail, new DTReservaGrupal(DTFecha(dia,mes,ano), DTFecha(2,2,2002), EstadoReserva(0), 1,ingresanHuespedes));
+                            cout << "Reserva agregada" << endl;
+                            codigo++;
+                        } catch(invalid_argument& e) {
+                            cout << "Error: " << e.what() << endl;
+                        }
                     }
-               }else{
-                try {
-                        std::vector<DTHuesped> ingresanHuespedes;
-                        
-                        bool agregar=true;
-                        do {
-                            std::string nombre, email;
-                            bool tecnopacker;
-
-                            std::cout << "Ingrese el nombre del huesped "<< ": "<<endl;
-                            std::cin >> nombre;
-                            std::cout << "Ingrese el email del huesped " << ": "<<endl;
-                            std::cin >> email;
-                            std::cout << "Es tecnopacker? (0 para No, 1 para Sí): "<<endl;
-                            std::cin >> tecnopacker;
-                            std::cout << "Desea agregar otro? (0 para No, 1 para Sí): "<<endl;
-                            std::cin >> agregar;
-
-                        }while(agregar!=0);
-
-
-                    systema.registrarReserva(mail, new DTReservaGrupal(DTFecha(dia,mes,ano), DTFecha(2,2,2002), EstadoReserva(0), 1,ingresanHuespedes));
-                    cout << "Reserva agregada" << endl;
-                    codigo++;
-                } catch(invalid_argument& e) {
-                    cout << "Error: " << e.what() << endl;
                 }
-               }
-               
                 getchar();
                    std::cout << "Presiona Enter para continuar..." << std::endl;
                     // Leer una línea en blanco (hasta que se presione Enter)
@@ -343,17 +351,17 @@ int main() {
                 std::vector<DTReserva*> reservas;
                 int cantReservas;
                 int dia1,mes1,ano1;
-                do{
-                        loop = false;
-                        cout << "Ingrese fecha CheckIn formato DD MM AAAA: "<<endl;
-                        cin >> dia1;
-                        cin >> mes1;
-                        cin >> ano1;
+            
+                    
+                    cout << "Ingrese fecha CheckIn formato DD MM AAAA: "<<endl;
+                    cin >> dia1;
+                    cin >> mes1;
+                    cin >> ano1;
 
-                        if(dia1 < 1 || dia1 > 31 || mes1 < 1 || mes1 > 12 || ano1 < 1900){
-                            throw invalid_argument("Formato No Respetado");
-                        }
-                    }while(loop == true);
+                    if(dia1 < 1 || dia1 > 31 || mes1 < 1 || mes1 > 12 || ano1 < 1900){
+                        throw invalid_argument("Formato No Respetado");
+                    }
+            
                 DTReserva** res = systema.obtenerReservas(DTFecha(dia1,mes1,ano1), cantReservas);
                 for (int i = 0; i < cantReservas; i++) {
                 DTReserva* r = dynamic_cast<DTReserva*>(res[i]);
