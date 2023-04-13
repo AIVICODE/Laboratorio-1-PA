@@ -11,8 +11,8 @@ private:
     DTHuesped* huesped;
 
 public:
-    ReservaIndividual(DTFecha checkIn, DTFecha checkOut, EstadoReserva estado, bool pagado)
-    : Reserva(checkIn, checkOut, estado), pagado(pagado) {}
+    ReservaIndividual(DTFecha checkIn, DTFecha checkOut, EstadoReserva estado,Habitacion** habitacion, Huesped** huesped, bool pagado)
+    : Reserva(checkIn, checkOut, estado,habitacion,huesped), pagado(pagado) {}
     
 
     bool getPagado() const { return pagado; }

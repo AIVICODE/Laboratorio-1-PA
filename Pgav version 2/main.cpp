@@ -194,8 +194,8 @@ int main() {
 
             case 5: {
                  string mail;
-                 int codigo=0,dia,mes,ano,dia_,mes_,ano_,estado_,habitacion;
-                float precio;
+                 int dia,mes,ano,dia_,mes_,ano_,habitacion;
+        
                 int option;
                 bool pago;
                 do{
@@ -237,7 +237,6 @@ int main() {
                                 break;
                         }
                     }while(loop == true);
-                    bool pago;
                     int cond;
                     do{
                         loop = false;
@@ -274,38 +273,12 @@ int main() {
                     else{
                         cout << "Grupal" << endl;
                     }
-                    cout << "¿Son estos datos correctos? (1: si / 0: no) :";
-                    cin >> input;
-                    switch(input){
-                        case 1:
-                        seguir = true;
-                            break;
-                        case 0:
-                            cout << "¿Desea reingresar los datos? (1: si / 0: no) :";
-                            cin >> input;
-                                switch(input){
-                                    case 1:
-                                    loop = true;
-                                    break;
-                                    default:
-                                    seguir = false;
-                                    loop = false;
-                                    break;
-                                }
-                            break;
-                        default:
-                            cout << "Error al registrar la reserva" << endl;
-                            seguir = false;
-                            loop = false;
-                            break;
-                    }  
                 }while(loop == true);
                 if(seguir == true){
                     if (option==1){
                         try {
                             systema.registrarReserva(mail, new DTReservaIndividual(DTFecha(dia,mes,ano), DTFecha(dia_,mes_,ano_), EstadoReserva(0), habitacion,pago));
                             cout << "Reserva agregada" << endl;
-                            codigo++;
                         } catch(invalid_argument& e) {
                             cout << "Error: " << e.what() << endl;
                         }
@@ -332,7 +305,6 @@ int main() {
 
                             systema.registrarReserva(mail, new DTReservaGrupal(DTFecha(dia,mes,ano), DTFecha(2,2,2002), EstadoReserva(0), 1,ingresanHuespedes));
                             cout << "Reserva agregada" << endl;
-                            codigo++;
                         } catch(invalid_argument& e) {
                             cout << "Error: " << e.what() << endl;
                         }

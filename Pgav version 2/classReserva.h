@@ -14,12 +14,13 @@ protected:
     EstadoReserva estado;
     float costo;
 
-    Habitacion* habitacion_;
-    Huesped* huesped_;
+    Habitacion** habitacion_;
+    Huesped** huesped_;
 
 public:
-    Reserva(DTFecha checkIn, DTFecha checkOut, EstadoReserva estado)
-        : checkIn(checkIn), checkOut(checkOut), estado(estado) {
+        // Constructor que acepta punteros a Habitacion y Huesped
+    Reserva(DTFecha checkIn, DTFecha checkOut, EstadoReserva estado, Habitacion** habitacion, Huesped** huesped)
+        : checkIn(checkIn), checkOut(checkOut), estado(estado), habitacion_(habitacion), huesped_(huesped) {
         // Resto del código del constructor
     }
      

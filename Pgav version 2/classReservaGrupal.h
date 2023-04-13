@@ -9,8 +9,8 @@ class ReservaGrupal : public Reserva {
 private:
     std::vector<Huesped> huespedes;
 public:
-    ReservaGrupal( DTFecha checkIn, DTFecha checkOut, EstadoReserva estado, std::vector<Huesped> huespedes)
-        : Reserva(checkIn, checkOut, estado), huespedes(huespedes) {}
+    ReservaGrupal( DTFecha checkIn, DTFecha checkOut, EstadoReserva estado,Habitacion** habitacion, Huesped** huesped, std::vector<Huesped> huespedes)
+        : Reserva(checkIn, checkOut, estado,habitacion,huesped), huespedes(huespedes) {}
 
     const std::vector<Huesped> getHuespedes() const { return huespedes; }
     void setHuespedes(const std::vector<Huesped>& huespedes) { this->huespedes = huespedes; }

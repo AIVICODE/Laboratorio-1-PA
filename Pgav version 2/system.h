@@ -85,7 +85,6 @@ DTHuesped** obtenerHuespedes(int& cantHuespedes) {
     if (dtHuesped == nullptr) {
         throw std::invalid_argument("El huesped no esta registrado en el sistema.");
     }
-
     // Buscamos la habitación correspondiente al número dado en la lista de habitaciones del sistema
     Habitacion* dtHabitacion = nullptr;
     for (auto habitacion : habitaciones) {
@@ -97,34 +96,40 @@ DTHuesped** obtenerHuespedes(int& cantHuespedes) {
     if (dtHabitacion == nullptr) {
         throw std::invalid_argument("La habitacion no esta registrada en el sistema.");
     }
-    /*SOLO PARA PRUEBAS ACA VAN LAS INSTANCIAS REALEAS DE RESERVA*/
-   if (ReservaIndividual* individual = dynamic_cast<ReservaIndividual*>(reserva)) {
+   if (DTReservaIndividual* individual = dynamic_cast<DTReservaIndividual*>(reserva)) {
     // Manejar la reserva individual
-    Reserva* nuevaReservaIndividual = new ReservaIndividual(individual->getCheckIn(), individual->getCheckOut(), individual->getEstado(),individual ->getPagado());
+    Reserva* nuevaReservaIndividual = new ReservaIndividual(individual->getCheckIn(), individual->getCheckOut(), individual->getEstado(),&dtHabitacion,&dtHuesped,individual ->getPagado());
+    cout<<individual->getPagado();
     reservas.push_back(nuevaReservaIndividual); // Agregar la reserva individual al vector de reservas
+    cout<<"agrega";
 } else if (ReservaGrupal* grupal = dynamic_cast<ReservaGrupal*>(reserva)) {
     // Manejar la reserva grupal
     if (grupal->getHuespedes().size() <= 1) {
         throw std::invalid_argument("La reserva grupal debe tener al menos dos huespedes.");
     }
-    Reserva* nuevaReservaGrupal = new ReservaGrupal(grupal->getCheckIn(), grupal->getCheckOut(),EstadoReserva(0), grupal->getHuespedes());
+    Reserva* nuevaReservaGrupal = new ReservaGrupal(grupal->getCheckIn(), grupal->getCheckOut(),EstadoReserva(0),&dtHabitacion,&dtHuesped, grupal->getHuespedes());
     reservas.push_back(nuevaReservaGrupal); // Agregar la reserva grupal al vector de reservas
     } 
  else {
         throw std::invalid_argument("Tipo de reserva desconocido.");
     }
+    
 }
+
+
+
  DTReserva** obtenerReservas(DTFecha fecha, int& cantReservas) {
     // Creamos un arreglo de DTReserva** con el tamaño máximo posible
     DTReserva** resultado = new DTReserva*[reservas.size()];
+    cout<<reservas.size();
     cantReservas = 0;
     // Copiamos las reservas correspondientes al arreglo y contamos la cantidad de reservas
     for (auto reserva : reservas) {
-        cout << "entra";
-        if (reserva->getCheckIn() >= fecha && reserva->getCheckOut() <= fecha) {
-            cout << "entra";
+        cout << "entra a for";
+        if (reserva->getCheckIn() <= fecha && reserva->getCheckOut() >= fecha) {
+            cout << "entra por positivo";
             if (ReservaIndividual* ind = dynamic_cast<ReservaIndividual*>(reserva)) {
-                resultado[cantReservas] = new DTReservaIndividual(ind->getCheckIn(),ind->getCheckOut(),ind->getEstado(),0/*para implementar aun*/,ind->getPagado());
+                resultado[cantReservas] = new DTReservaIndividual(ind->getCheckIn(),ind->getCheckOut(),ind->getEstado(),ind->getPagado());
                 cantReservas++;
             } else if (ReservaGrupal* grup = dynamic_cast<ReservaGrupal*>(reserva)) {
                 std::vector<Huesped> huespedes2 = grup->getHuespedes();
