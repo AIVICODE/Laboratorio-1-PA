@@ -14,6 +14,7 @@ int main() {
     bool salir = false;
     bool seguir = true;
     char input;
+    string residuo;
 
 
     while (!salir) {
@@ -53,6 +54,7 @@ int main() {
                         loop = false;
                         cout << "El huésped es tecnopacker? (1: si / 0: no): ";
                         cin >> input;
+                        cin >> residuo;
                         switch(input){
                             case '1':
                                 esFinger = 1;
@@ -79,6 +81,7 @@ int main() {
                     }
                     cout << "¿Estos datos son correctos? (1: si / 0: no) :";
                     cin >> input;
+                    cin >> residuo;
                     switch(input){
                             case '1':
                                 break;
@@ -119,7 +122,8 @@ int main() {
                     cout << "Precio de Habitación: " << precio << endl;
                     cout << "Capacidad de Habitación: " << capacidad << endl;
                     cout << "¿Son estos datos correctos? (1: si / 0: no) :";
-                    cin >> input; 
+                    cin >> input;    
+                    cin >> residuo;
                     switch(input){
                             case '1':
                                 break;
