@@ -11,11 +11,11 @@ protected:
     DTFecha checkIn;
     DTFecha checkOut;
     EstadoReserva estado;
-    float costo;
     int habitacion;
+    float costo;
 public:
-    DTReserva(DTFecha checkIn, DTFecha checkOut, EstadoReserva estado, int habitacion)
-        :checkIn(checkIn), checkOut(checkOut), estado(estado), habitacion(habitacion){}
+    DTReserva(DTFecha checkIn, DTFecha checkOut, EstadoReserva estado, int habitacion, float costo)
+    : checkIn(checkIn), checkOut(checkOut), estado(estado), habitacion(habitacion), costo(costo) {}
 
     virtual ~DTReserva() {}
     int getCodigo() const { return codigo; }

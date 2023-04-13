@@ -14,6 +14,7 @@ public:
     bool operator==(const DTFecha& fecha) const; // Sobrecarga del operador ==
     bool operator<=(const DTFecha& fecha) const; // Sobrecarga del operador <=
     bool operator>=(const DTFecha& fecha) const; // Sobrecarga del operador >=
+    int operator-(const DTFecha& fecha) const;
     DTFecha() = default;
 private:
     int dia_;
@@ -79,6 +80,11 @@ bool DTFecha::operator>=(const DTFecha& fecha) const {
         }
     }
     return false;
+}
+int DTFecha::operator-(const DTFecha& fecha) const {
+    int diasTotal1 = dia_ + mes_ * 30 + anio_ * 360; // Convertir la fecha actual a días totales
+    int diasTotal2 = fecha.getDia() + fecha.getMes() * 30 + fecha.getAnio() * 360; // Convertir la fecha pasada como argumento a días totales
+    return std::abs(diasTotal1 - diasTotal2); // Retornar la diferencia en valor absoluto
 }
 
 #endif

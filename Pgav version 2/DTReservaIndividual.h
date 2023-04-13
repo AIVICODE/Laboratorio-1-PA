@@ -9,8 +9,8 @@ class DTReservaIndividual : public DTReserva {
 private:
     bool pagado;
 public:
-DTReservaIndividual(DTFecha checkIn, DTFecha checkOut, EstadoReserva estado, int habitacion, bool pagado)
-    : DTReserva(checkIn, checkOut, estado, habitacion), pagado(pagado) {}
+DTReservaIndividual(DTFecha checkIn, DTFecha checkOut, EstadoReserva estado, int habitacion,float costo, bool pagado)
+    : DTReserva(checkIn, checkOut, estado, habitacion,costo), pagado(pagado) {}
     
 
     bool getPagado() const { return pagado; }

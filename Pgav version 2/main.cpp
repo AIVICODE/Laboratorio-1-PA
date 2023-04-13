@@ -277,7 +277,7 @@ int main() {
                 if(seguir == true){
                     if (option==1){
                         try {
-                            systema.registrarReserva(mail, new DTReservaIndividual(DTFecha(dia,mes,ano), DTFecha(dia_,mes_,ano_), EstadoReserva(0), habitacion,pago));
+                            systema.registrarReserva(mail, new DTReservaIndividual(DTFecha(dia,mes,ano), DTFecha(dia_,mes_,ano_), EstadoReserva(0), habitacion,0,pago));
                             cout << "Reserva agregada" << endl;
                         } catch(invalid_argument& e) {
                             cout << "Error: " << e.what() << endl;
@@ -303,7 +303,7 @@ int main() {
                                 }while(agregar!=0);
 
 
-                            systema.registrarReserva(mail, new DTReservaGrupal(DTFecha(dia,mes,ano), DTFecha(2,2,2002), EstadoReserva(0), 1,ingresanHuespedes));
+                            systema.registrarReserva(mail, new DTReservaGrupal(DTFecha(dia,mes,ano), DTFecha(2,2,2002), EstadoReserva(0), 1,0,ingresanHuespedes));
                             cout << "Reserva agregada" << endl;
                         } catch(invalid_argument& e) {
                             cout << "Error: " << e.what() << endl;

@@ -14,12 +14,12 @@ protected:
     EstadoReserva estado;
     float costo;
 
-    Habitacion** habitacion_;
-    Huesped** huesped_;
+    Habitacion* habitacion_;
+    Huesped* huesped_;
 
 public:
         // Constructor que acepta punteros a Habitacion y Huesped
-    Reserva(DTFecha checkIn, DTFecha checkOut, EstadoReserva estado, Habitacion** habitacion, Huesped** huesped)
+    Reserva(DTFecha checkIn, DTFecha checkOut, EstadoReserva estado, Habitacion* habitacion, Huesped* huesped)
         : checkIn(checkIn), checkOut(checkOut), estado(estado), habitacion_(habitacion), huesped_(huesped) {
         // Resto del código del constructor
     }
@@ -65,13 +65,11 @@ public:
     void setCosto(float costo) {
         this->costo = costo;
     }
-
-    virtual float calcularCosto() {
-        // Implementación de la función calcularCosto()
-        // Puedes escribir el cálculo del costo según tus necesidades
-        // y actualizar el valor de costo en consecuencia
-        return costo;
+    int getNumeroHabitacion() const {
+    return habitacion_->getNumero();
     }
+
+    virtual float calcularCosto() =0;
 };
 
 #endif
