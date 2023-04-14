@@ -15,7 +15,6 @@ int main() {
     bool seguir = true;
     char skip;
     char input;
-    string residuo;
 
 
     while (!salir) {
@@ -130,8 +129,6 @@ int main() {
                     cout << "Nro de Habitación: " << numero << endl;
                     cout << "Precio de Habitación: " << precio << endl;
                     cout << "Capacidad de Habitación: " << capacidad << endl;
-                    cout << "¿Son estos datos correctos? (1: si / 0: no / s: salir) :";
-                    cin >> input;
                     switch(input){
                             case '1':
                                 break;
@@ -212,6 +209,7 @@ int main() {
             case 5: {
                  string mail;
                  int dia,mes,ano,dia_,mes_,ano_,habitacion;
+                 float costo=0.0;
         
                 int option;
                 bool pago;
@@ -294,7 +292,7 @@ int main() {
                 if(seguir == true){
                     if (option==1){
                         try {
-                            systema.registrarReserva(mail, new DTReservaIndividual(DTFecha(dia,mes,ano), DTFecha(dia_,mes_,ano_), EstadoReserva(0), habitacion,0,pago));
+                            systema.registrarReserva(mail, new DTReservaIndividual(DTFecha(dia,mes,ano), DTFecha(dia_,mes_,ano_), EstadoReserva(0), habitacion,costo,pago));
                             cout << "Reserva agregada" << endl;
                         } catch(invalid_argument& e) {
                             cout << "Error: " << e.what() << endl;
@@ -316,11 +314,13 @@ int main() {
                                     std::cin >> tecnopacker;
                                     std::cout << "Desea agregar otro? (0 para No, 1 para Sí): "<<endl;
                                     std::cin >> agregar;
+                                     DTHuesped huesped3s = DTHuesped(nombre, email,tecnopacker);
+                                     ingresanHuespedes.push_back(huesped3s);
 
                                 }while(agregar!=0);
 
 
-                            systema.registrarReserva(mail, new DTReservaGrupal(DTFecha(dia,mes,ano), DTFecha(2,2,2002), EstadoReserva(0), 1,0,ingresanHuespedes));
+                            systema.registrarReserva(mail, new DTReservaGrupal(DTFecha(dia,mes,ano), DTFecha(2,2,2002), EstadoReserva(0), habitacion,costo,ingresanHuespedes));
                             cout << "Reserva agregada" << endl;
                         } catch(invalid_argument& e) {
                             cout << "Error: " << e.what() << endl;

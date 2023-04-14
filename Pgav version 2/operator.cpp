@@ -25,7 +25,7 @@ std::ostream& operator<<(std::ostream& os, const DTReserva& reserva) {
             if (huesped.getEsFinger()) {
                 os << " - es Finger";
             }
-            os << ", ";
+            os << ", "<<endl;
         }
         os << std::endl;
     }

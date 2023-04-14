@@ -102,12 +102,33 @@ DTHuesped** obtenerHuespedes(int& cantHuespedes) {
     cout<<individual->getPagado();
     reservas.push_back(nuevaReservaIndividual); // Agregar la reserva individual al vector de reservas
     cout<<"agrega";
-} else if (ReservaGrupal* grupal = dynamic_cast<ReservaGrupal*>(reserva)) {
+} else if (DTReservaGrupal* grupal = dynamic_cast<DTReservaGrupal*>(reserva)) {
     // Manejar la reserva grupal
-    if (grupal->getHuespedes().size() <= 1) {
+    
+    cout<<"cantidad de huespedes"<<grupal->getHuespedes().size();
+
+if (grupal->getHuespedes().size() <= 1) {
         throw std::invalid_argument("La reserva grupal debe tener al menos dos huespedes.");
     }
-    Reserva* nuevaReservaGrupal = new ReservaGrupal(grupal->getCheckIn(), grupal->getCheckOut(),EstadoReserva(0),dtHabitacion,dtHuesped, grupal->getHuespedes());
+    std::vector<DTHuesped> huespedes = grupal->getHuespedes();
+
+// Crear un vector de punteros a DTReserva
+std::vector<Huesped> grupalh;
+
+// Recorrer los huéspedes y crear objetos DTReserva con los atributos de cada huésped
+for (const auto& huesped : huespedes) {
+    // Obtener los atributos del huésped
+    std::string nombre = huesped.getNombre();
+    std::string email = huesped.getEmail();
+    bool esteckno=huesped.getEsFinger();
+    // Crear un objeto DTReserva con los atributos del huésped
+    Huesped huesped3s = Huesped(nombre, email, esteckno);
+
+    // Agregar el puntero al objeto DTReserva al vector grupalh
+    grupalh.push_back(huesped3s);
+}
+
+    Reserva* nuevaReservaGrupal = new ReservaGrupal(grupal->getCheckIn(), grupal->getCheckOut(),EstadoReserva(0),dtHabitacion,dtHuesped, grupalh);
     reservas.push_back(nuevaReservaGrupal); // Agregar la reserva grupal al vector de reservas
     } 
  else {
@@ -129,7 +150,7 @@ DTHuesped** obtenerHuespedes(int& cantHuespedes) {
         if (reserva->getCheckIn() <= fecha && reserva->getCheckOut() >= fecha) {
             cout << "entra por positivo";
             if (ReservaIndividual* ind = dynamic_cast<ReservaIndividual*>(reserva)) {
-                resultado[cantReservas] = new DTReservaIndividual(ind->getCheckIn(),ind->getCheckOut(),ind->getEstado(),ind->getNumeroHabitacion(),0,ind->getPagado());
+                resultado[cantReservas] = new DTReservaIndividual(ind->getCheckIn(),ind->getCheckOut(),ind->getEstado(),ind->getNumeroHabitacion(),ind->calcularCosto(),ind->getPagado());
                 cantReservas++;
             } else if (ReservaGrupal* grup = dynamic_cast<ReservaGrupal*>(reserva)) {
                 std::vector<Huesped> huespedes2 = grup->getHuespedes();
@@ -151,7 +172,7 @@ for (const auto& huesped : huespedes) {
     // Agregar el puntero al objeto DTReserva al vector grupalh
     grupalh.push_back(huesped3s);
 }
-                resultado[cantReservas] = new DTReservaGrupal(grup->getCheckIn(),grup->getCheckOut(),grup->getEstado(),0,0/*para modificar mas adelante*/,grupalh);
+                resultado[cantReservas] = new DTReservaGrupal(grup->getCheckIn(),grup->getCheckOut(),grup->getEstado(),grup->getNumeroHabitacion(),grup->calcularCosto(),grupalh);
                 cantReservas++;
             }
         }

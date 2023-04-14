@@ -15,10 +15,9 @@ public:
     const std::vector<Huesped> getHuespedes() const { return huespedes; }
     void setHuespedes(const std::vector<Huesped>& huespedes) { this->huespedes = huespedes; }
      int getCantHuespedes() const { return huespedes.size(); }
-         float calcularCosto() override {
-        // Implementación de la función calcularCosto() en DTHabitacion
-        // Puedes escribir el cálculo del costo específico para DTHabitacion aquí
-        // y actualizar el valor de costo en consecuencia
+    float calcularCosto() override {
+        int cantDias = checkOut - checkIn; // suponiendo que se sobrecargó el operador "-" para fechas
+        float costo = cantDias * habitacion_->getPrecio(); // calculando el costo por días de la habitación
         return costo;
     }
 };
