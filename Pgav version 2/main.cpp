@@ -13,6 +13,7 @@ int main() {
     bool loop = false;
     bool salir = false;
     bool seguir = true;
+    char skip;
     char input;
     string residuo;
 
@@ -32,7 +33,7 @@ int main() {
         cout << "Ingrese la opción deseada > ";
         cin >> opcion;
         cout << endl;
-        
+        skip = false;
         switch (opcion) {
             case 1: {
                 string nombre;
@@ -54,7 +55,6 @@ int main() {
                         loop = false;
                         cout << "El huésped es tecnopacker? (1: si / 0: no): ";
                         cin >> input;
-                        cin >> residuo;
                         switch(input){
                             case '1':
                                 esFinger = 1;
@@ -67,6 +67,7 @@ int main() {
                                 loop = true;
                                 break;
                         }
+                        fflush(stdin);
                     }while(loop == true);
                     
                     cout << endl;
@@ -79,14 +80,16 @@ int main() {
                     else{
                          cout << "no" << endl;
                     }
-                    cout << "¿Estos datos son correctos? (1: si / 0: no) :";
+                    cout << "¿Estos datos son correctos? (1: si / 0: no / s: salir) :";
                     cin >> input;
-                    cin >> residuo;
                     switch(input){
                             case '1':
                                 break;
                             case '0':
                                 loop = true;
+                                break;
+                            case 's':
+                                skip = true;
                                 break;
                             default:
                                 cout << "Error al agregar huésped" << endl;
@@ -95,13 +98,15 @@ int main() {
                         }
                     
                 }while(loop == true);
-                try {
-                    systema.agregarHuesped(nombre, email, esFinger);
-                    cout << "Huésped agregado correctamente" << endl;
-                } catch (invalid_argument& e) {
-                    cout << "Error al agregar huésped: " << e.what() << endl;
+                if(skip == false){
+                    try {
+                        systema.agregarHuesped(nombre, email, esFinger);
+                        cout << "Huésped agregado correctamente" << endl;
+                    } catch (invalid_argument& e) {
+                        cout << "Error al agregar huésped: " << e.what() << endl;
+                    }
                 }
-
+                fflush(stdin);
                 break;
             }
 
@@ -111,38 +116,46 @@ int main() {
                 do{
                     loop = false;
                     cout << "Ingrese numero de habitacion: ";
-                    cin >> numero;
+                    scanf("%d",numero);
+                    fflush(stdin);
+                    
                     cout << "Ingrese precio de la habitacion: ";
-                    cin >> precio;
+                    scanf("%.2f",precio);
+                    fflush(stdin);
                     cout << "Ingrese capacidad de la habitacion: ";
-                    cin >> capacidad;
+                    scanf("%d",capacidad);
+                    fflush(stdin);
                     
                     cout << endl;
                     cout << "Nro de Habitación: " << numero << endl;
                     cout << "Precio de Habitación: " << precio << endl;
                     cout << "Capacidad de Habitación: " << capacidad << endl;
-                    cout << "¿Son estos datos correctos? (1: si / 0: no) :";
-                    cin >> input;    
-                    cin >> residuo;
+                    cout << "¿Son estos datos correctos? (1: si / 0: no / s: salir) :";
+                    cin >> input;
                     switch(input){
                             case '1':
                                 break;
                             case '0':
                                 loop = true;
                                 break;
+                            case 's':
+                                skip = true;
+                                break;
                             default:
                                 cout << "Error al agregar Habitación, Vuelva a ingresar los datos." << endl;
                                 loop = true;
                                 break;
                         }
+                    fflush(stdin);
                }while(loop == true);
+               if(skip == false){
                 try {
                     systema.agregarHabitacion(numero, precio, capacidad);
                     cout << "Habitacion agregada exitosamente." << endl;
                 } catch(invalid_argument& e) {
                     cout << "Error: " << e.what() << endl;
                 }
-                
+               }
                 break;
             }
 
@@ -360,6 +373,7 @@ int main() {
 
             default: {
                 cout << "Opción inválida, por favor intente de nuevo" << endl;
+                
                 break;
             }
         }    
