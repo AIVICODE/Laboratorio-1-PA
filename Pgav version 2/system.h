@@ -107,22 +107,41 @@ DTHuesped** obtenerHuespedes(int& cantHuespedes) {
 if (grupal->getHuespedes().size() <= 1) {
         throw std::invalid_argument("La reserva grupal debe tener al menos dos huespedes validos registrados.");
     }
-    std::vector<DTHuesped> huespedes = grupal->getHuespedes();
 
+std::vector<DTHuesped> huespedes1 = grupal->getHuespedes();
 // Crear un vector de punteros a DTReserva
 std::vector<Huesped> grupalh;
 
 // Recorrer los huéspedes y crear objetos DTReserva con los atributos de cada huésped
-for (const auto& huesped : huespedes) {
-    // Obtener los atributos del huésped
+for (const auto& huesped : huespedes1) {
     std::string nombre = huesped.getNombre();
     std::string email = huesped.getEmail();
-    bool esteckno=huesped.getEsFinger();
-    // Crear un objeto DTReserva con los atributos del huésped
-    Huesped huesped3s = Huesped(nombre, email, esteckno);
+    bool esteckno = huesped.getEsFinger();
+    bool found = false; // Variable para indicar si se encuentra coincidencia
+    // Recorrer el vector de punteros a Huesped*
+    for (const auto& huespedPtr : huespedes) {
+        // Comparar nombre y email del huesped con el contenido de huespedes*
+        if (nombre == huespedPtr->getNombre() && email == huespedPtr->getEmail() && huespedPtr->esFinger()==esteckno) {
+            found = true; // Coincidencia encontrada
+            break; // Salir del bucle
+        }
+    }
 
-    // Agregar el puntero al objeto DTReserva al vector grupalh
-    grupalh.push_back(huesped3s);
+    if (found) {
+        // Coincidencia encontrada, hacer el push a grupalh del huesped
+        Huesped huesped3s = Huesped(nombre, email, esteckno);
+        grupalh.push_back(huesped3s);
+    } else {
+        // No se encontró coincidencia, mostrar error
+        std::cout << "Error: No se encontró coincidencia para el huésped con nombre: " << nombre << " y email: " << email << std::endl;
+        getchar();
+                   std::cout << "Presiona Enter para continuar..." << std::endl;
+                    // Leer una línea en blanco (hasta que se presione Enter)
+                    std::string entrada;
+                    std::getline(std::cin, entrada);
+
+        return;
+    }
 }
 
     Reserva* nuevaReservaGrupal = new ReservaGrupal(grupal->getCheckIn(), grupal->getCheckOut(),EstadoReserva(0),dtHabitacion,dtHuesped, grupalh);
@@ -156,7 +175,7 @@ std::vector<Huesped> huespedes = grup->getHuespedes();
 
 // Crear un vector de punteros a DTReserva
 std::vector<DTHuesped> grupalh;
-
+int contteck;
 // Recorrer los huéspedes y crear objetos DTReserva con los atributos de cada huésped
 for (const auto& huesped : huespedes) {
     // Obtener los atributos del huésped
@@ -164,12 +183,19 @@ for (const auto& huesped : huespedes) {
     std::string email = huesped.getEmail();
     bool esteckno=huesped.esFinger();
     // Crear un objeto DTReserva con los atributos del huésped
+            if(esteckno==true){
+            contteck++; //cuento tecknopackers para descuento
+        }
     DTHuesped huesped3s = DTHuesped(nombre, email, esteckno);
 
     // Agregar el puntero al objeto DTReserva al vector grupalh
     grupalh.push_back(huesped3s);
 }
-                resultado[cantReservas] = new DTReservaGrupal(grup->getCheckIn(),grup->getCheckOut(),grup->getEstado(),grup->getNumeroHabitacion(),grup->calcularCosto(),grupalh);
+            float costo=grup->calcularCosto();
+            if(contteck>=2){
+                costo=costo*0.7;
+            }
+                resultado[cantReservas] = new DTReservaGrupal(grup->getCheckIn(),grup->getCheckOut(),grup->getEstado(),grup->getNumeroHabitacion(),costo,grupalh);
                 cantReservas++;
             }
         }
