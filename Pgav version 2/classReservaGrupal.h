@@ -18,7 +18,6 @@ public:
     float calcularCosto() override {
         int cantDias = checkOut - checkIn; // suponiendo que se sobrecargó el operador "-" para fechas
         float costo = cantDias * habitacion_->getPrecio(); // calculando el costo por días de la habitación
-        cout<<habitacion_->getPrecio();
         return costo;
     }
 };
