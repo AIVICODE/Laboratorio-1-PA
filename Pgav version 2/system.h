@@ -99,14 +99,13 @@ DTHuesped** obtenerHuespedes(int& cantHuespedes) {
    if (DTReservaIndividual* individual = dynamic_cast<DTReservaIndividual*>(reserva)) {
     // Manejar la reserva individual
     Reserva* nuevaReservaIndividual = new ReservaIndividual(individual->getCheckIn(), individual->getCheckOut(), individual->getEstado(),dtHabitacion,dtHuesped,individual ->getPagado());
-    cout<<individual->getPagado();
+    //cout<<individual->getPagado();
     reservas.push_back(nuevaReservaIndividual); // Agregar la reserva individual al vector de reservas
-    cout<<"agrega";
 } else if (DTReservaGrupal* grupal = dynamic_cast<DTReservaGrupal*>(reserva)) {
     // Manejar la reserva grupal
 
 if (grupal->getHuespedes().size() <= 1) {
-        throw std::invalid_argument("La reserva grupal debe tener al menos dos huespedes.");
+        throw std::invalid_argument("La reserva grupal debe tener al menos dos huespedes validos registrados.");
     }
     std::vector<DTHuesped> huespedes = grupal->getHuespedes();
 
@@ -140,13 +139,13 @@ for (const auto& huesped : huespedes) {
  DTReserva** obtenerReservas(DTFecha fecha, int& cantReservas) {
     // Creamos un arreglo de DTReserva** con el tamaño máximo posible
     DTReserva** resultado = new DTReserva*[reservas.size()];
-    cout<<reservas.size();
+    //cout<<reservas.size();
     cantReservas = 0;
     // Copiamos las reservas correspondientes al arreglo y contamos la cantidad de reservas
     for (auto reserva : reservas) {
-        cout << "entra a for";
+        //cout << "entra a for";
         if (reserva->getCheckIn() <= fecha && reserva->getCheckOut() >= fecha) {
-            cout << "entra por positivo";
+            //cout << "entra por positivo";
             if (ReservaIndividual* ind = dynamic_cast<ReservaIndividual*>(reserva)) {
                 resultado[cantReservas] = new DTReservaIndividual(ind->getCheckIn(),ind->getCheckOut(),ind->getEstado(),ind->getNumeroHabitacion(),ind->calcularCosto(),ind->getPagado());
                 cantReservas++;
@@ -175,7 +174,7 @@ for (const auto& huesped : huespedes) {
             }
         }
     }
-    cout<<cantReservas;
+    //cout<<cantReservas;
     
     return resultado;
  }

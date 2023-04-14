@@ -16,7 +16,6 @@ int main() {
     char skip;
     char input;
 
-
     while (!salir) {
         cout << endl;
         cout << "<< Bienvenido al sistema de gestión de hostel >>" << endl;
@@ -28,13 +27,14 @@ int main() {
         cout << "6. Obtener Reservas" << endl;
         cout << "7. Salir" << endl;
 
-        int opcion;
+        char opcion;
         cout << "Ingrese la opción deseada > ";
         cin >> opcion;
+        scanf("%*[^\n]%*c");
         cout << endl;
         skip = false;
         switch (opcion) {
-            case 1: {
+            case '1': {
                 string nombre;
                 string email;
                 bool esFinger;
@@ -66,7 +66,7 @@ int main() {
                                 loop = true;
                                 break;
                         }
-                        fflush(stdin);
+                        scanf("%*[^\n]%*c");
                     }while(loop == true);
                     
                     cout << endl;
@@ -105,11 +105,11 @@ int main() {
                         cout << "Error al agregar huésped: " << e.what() << endl;
                     }
                 }
-                fflush(stdin);
+                scanf("%*[^\n]%*c");
                 break;
             }
 
-            case 2: {
+            case '2': {
                 int numero, capacidad;
                 float precio;
                 stringstream numAux,numAux2,numAux3;
@@ -121,20 +121,20 @@ int main() {
                     numAux << aux;
                     numAux >> numero;
 
-                    fflush(stdin);
+                    scanf("%*[^\n]%*c");
                     
                     cout << "Ingrese precio de la habitacion: ";
                     cin >> aux2;
                     numAux2 << aux2;
                     numAux2 >> precio;
 
-                    fflush(stdin);
+                    scanf("%*[^\n]%*c");
 
                     cout << "Ingrese capacidad de la habitacion: ";
                     cin >> aux3;
                     numAux3 << aux3;
                     numAux3 >> capacidad;
-                    fflush(stdin);
+                    scanf("%*[^\n]%*c");
                     
                     cout << endl;
                     cout << "Nro de Habitación: " << numero << endl;
@@ -157,7 +157,7 @@ int main() {
                                 loop = true;
                                 break;
                         }
-                    fflush(stdin);
+                    scanf("%*[^\n]%*c");
                }while(loop == true);
                if(skip == false){
                 try {
@@ -170,7 +170,7 @@ int main() {
                 break;
             }
 
-            case 3: {
+            case '3': {
                 int cantHuespedes = 0;
                 DTHuesped** huespedes = systema.obtenerHuespedes(cantHuespedes);
                 if(cantHuespedes==0){
@@ -197,7 +197,7 @@ int main() {
                 break;
             }
 
-            case 4: {
+            case '4': {
                  int cantHabitaciones = 0;
                 DTHabitacion** habitaciones = systema.obtenerHabitaciones(cantHabitaciones);
                 if(cantHabitaciones==0){
@@ -220,13 +220,17 @@ int main() {
                 break;
             }
 
-            case 5: {
-                 string mail;
-                 int dia,mes,ano,dia_,mes_,ano_,habitacion;
-                 float costo=0.0;
-        
-                int option;
+            case '5': {
+                string mail;
+                int dia,mes,ano,dia_,mes_,ano_,habitacion;
+                float costo=0.0;
+                std::vector<DTHuesped> ingresanHuespedes;
+                char option;
                 bool pago;
+                char cond;
+                string choice1;
+                stringstream choice;
+                bool agregar=true;
                 do{
                     loop=false;
                     cout << "Ingrese email: "<<endl;
@@ -238,73 +242,94 @@ int main() {
                         cin >> ano;
 
                         if(dia < 1 || dia > 31 || mes < 1 || mes > 12 || ano < 1900){
-                            throw invalid_argument("Formato No Respetado");
+                            throw invalid_argument("Formato de Fecha No Respetado");
                         }
-                 
+                        scanf("%*[^\n]%*c");
+
                         cout << "Ingrese fecha Check-Out formato DD MM AAAA: "<<endl;
                         cin >> dia_;
                         cin >> mes_;
                         cin >> ano_;
 
                         if(dia_ < 1 || dia_ > 31 || mes_ < 1 || mes_ > 12 || ano_ < 1900){
-                            throw invalid_argument("Formato No Respetado");
+                            throw invalid_argument("Formato de Fecha No Respetado");
                         }
+                        scanf("%*[^\n]%*c");
 
                     cout<< "Ingrese numero de habitacion"<<endl;
-                    cin >> habitacion;
+                    cin >> choice1;
+                    choice << choice1;
+                    choice >> habitacion;
+                    scanf("%*[^\n]%*c");
+                    
                     do{
+                        
                         loop = false;
                         cout << "Su habitacion es 1)individual o 2) grupal?"<<endl;
                         cin >> option;
                         switch(option){
-                            case 1:
-                            case 2:
+                            case '1':
+                                do{
+                                    loop = false;
+                                    cout << "Pago la reserva? 1)si 2)no" << endl;
+                                    cin >> cond;
+                                    switch(cond){
+                                        case '1':
+                                            pago = true;
+                                            break;
+                                        case '2':
+                                            pago = false;
+                                            break;
+                                        default:
+                                            cout << "El valor ingresado no es valido, Vuelva a ingresar el dato" << endl << endl;
+                                            loop = true;
+                                    }
+                                    scanf("%*[^\n]%*c");
+                                }while(loop == true);
+                                break;
+                            case '2':
+                                do {
+                                    string nombre,email;
+                                    bool tecnopacker;
+                                    char choice;
+                                    
+                                    cout << "Ingrese el nombre del huesped "<< ": "<<endl;
+                                    cin >> nombre;
+                                    scanf("%*[^\n]%*c");
+                                    cout << "Ingrese el email del huesped " << ": "<<endl;
+                                    cin >> email;
+                                    scanf("%*[^\n]%*c");
+                                    cout << "Es tecnopacker? (0 para No, 1 para Sí) (default = 0): "<<endl;
+                                    cin >> choice;
+                                    if(choice == '1'){
+                                        tecnopacker = 1;
+                                    }
+                                    else{
+                                        tecnopacker = 0;
+                                    }
+                                    scanf("%*[^\n]%*c");
+                                    cout << "Desea agregar otro? (0 para No, 1 para Sí): "<<endl;
+                                    cin >> choice;
+                                    if(choice == '0'){
+                                        agregar = 0;
+                                    }
+                                    scanf("%*[^\n]%*c");
+                                    DTHuesped huesped3s = DTHuesped(nombre, email,tecnopacker);
+                                    ingresanHuespedes.push_back(huesped3s);
+
+                                }while(agregar!=0);
+
                                 break;
                             default:
                                 loop = true;
                                 cout << "Error, opcion ingresada no es valida" << endl;
                                 break;
                         }
+                        scanf("%*[^\n]%*c");
                     }while(loop == true);
-                    int cond;
-                    do{
-                        loop = false;
-                        cout << "Pago la reserva? 1)si 2)no" << endl;
-                        cin >> cond;
-                        switch(cond){
-                            case 1:
-                                pago = true;
-                                break;
-                            case 2:
-                                pago = false;
-                                break;
-                            default:
-                                cout << "El valor ingresado no es valido, Vuelva a ingresar el dato" << endl;
-                                loop = true;
-                        }
-                    }while(loop == true);
-
-                    cout << endl;
-                    cout << "Email: " << mail << endl;
-                    cout << "Fecha de Check-In: " << dia << "/" << mes << "/" << ano << endl;
-                    cout << "Fecha de Check-Out: " << dia_ << "/" << mes_ << "/" << ano_ << endl;
-                    cout << "Nro de Habitación: " << habitacion << endl;
-                    cout << "Tipo: ";
-                    if(option == 1){
-                        cout << "Individual" << endl;
-                        if(cond == 1){
-                            cout << "Reserva pagada" << endl;
-                        }
-                        else{
-                            cout << "Reserva no pagada" << endl;
-                        }
-                    }
-                    else{
-                        cout << "Grupal" << endl;
-                    }
                 }while(loop == true);
                 if(seguir == true){
-                    if (option==1){
+                    if (option == '1'){
                         try {
                             systema.registrarReserva(mail, new DTReservaIndividual(DTFecha(dia,mes,ano), DTFecha(dia_,mes_,ano_), EstadoReserva(0), habitacion,costo,pago));
                             cout << "Reserva agregada" << endl;
@@ -313,27 +338,6 @@ int main() {
                         }
                     }else{
                         try {
-                                std::vector<DTHuesped> ingresanHuespedes;
-                                
-                                bool agregar=true;
-                                do {
-                                    std::string nombre, email;
-                                    bool tecnopacker;
-
-                                    std::cout << "Ingrese el nombre del huesped "<< ": "<<endl;
-                                    std::cin >> nombre;
-                                    std::cout << "Ingrese el email del huesped " << ": "<<endl;
-                                    std::cin >> email;
-                                    std::cout << "Es tecnopacker? (0 para No, 1 para Sí): "<<endl;
-                                    std::cin >> tecnopacker;
-                                    std::cout << "Desea agregar otro? (0 para No, 1 para Sí): "<<endl;
-                                    std::cin >> agregar;
-                                     DTHuesped huesped3s = DTHuesped(nombre, email,tecnopacker);
-                                     ingresanHuespedes.push_back(huesped3s);
-
-                                }while(agregar!=0);
-
-
                             systema.registrarReserva(mail, new DTReservaGrupal(DTFecha(dia,mes,ano), DTFecha(2,2,2002), EstadoReserva(0), habitacion,costo,ingresanHuespedes));
                             cout << "Reserva agregada" << endl;
                         } catch(invalid_argument& e) {
@@ -341,7 +345,7 @@ int main() {
                         }
                     }
                 }
-                getchar();
+                    cout << endl;
                    std::cout << "Presiona Enter para continuar..." << std::endl;
                     // Leer una línea en blanco (hasta que se presione Enter)
                     std::string entrada;
@@ -350,7 +354,7 @@ int main() {
                 break;
             }
 
-            case 6: {
+            case '6': {
                 std::vector<DTReserva*> reservas;
                 int cantReservas;
                 int dia1,mes1,ano1;
@@ -380,7 +384,7 @@ int main() {
                 break;
             }
 
-            case 7: {
+            case '7': {
                 salir = true;
                 break;
             }
