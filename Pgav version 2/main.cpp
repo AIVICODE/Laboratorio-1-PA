@@ -112,23 +112,37 @@ int main() {
             case 2: {
                 int numero, capacidad;
                 float precio;
+                stringstream numAux,numAux2,numAux3;
+                string aux,aux2,aux3;
                 do{
                     loop = false;
                     cout << "Ingrese numero de habitacion: ";
-                    scanf("%d",numero);
+                    cin >> aux;
+                    numAux << aux;
+                    numAux >> numero;
+
                     fflush(stdin);
                     
                     cout << "Ingrese precio de la habitacion: ";
-                    scanf("%.2f",precio);
+                    cin >> aux2;
+                    numAux2 << aux2;
+                    numAux2 >> precio;
+
                     fflush(stdin);
+
                     cout << "Ingrese capacidad de la habitacion: ";
-                    scanf("%d",capacidad);
+                    cin >> aux3;
+                    numAux3 << aux3;
+                    numAux3 >> capacidad;
                     fflush(stdin);
                     
                     cout << endl;
                     cout << "Nro de Habitación: " << numero << endl;
                     cout << "Precio de Habitación: " << precio << endl;
                     cout << "Capacidad de Habitación: " << capacidad << endl;
+                    
+                    cout << "¿Estos datos son correctos? (1: si / 0: no / s: salir) :";
+                    cin >> input;
                     switch(input){
                             case '1':
                                 break;
