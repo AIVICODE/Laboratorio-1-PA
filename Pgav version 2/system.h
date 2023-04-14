@@ -104,8 +104,6 @@ DTHuesped** obtenerHuespedes(int& cantHuespedes) {
     cout<<"agrega";
 } else if (DTReservaGrupal* grupal = dynamic_cast<DTReservaGrupal*>(reserva)) {
     // Manejar la reserva grupal
-    
-    cout<<"cantidad de huespedes"<<grupal->getHuespedes().size();
 
 if (grupal->getHuespedes().size() <= 1) {
         throw std::invalid_argument("La reserva grupal debe tener al menos dos huespedes.");
