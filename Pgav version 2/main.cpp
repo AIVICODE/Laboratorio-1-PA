@@ -359,7 +359,7 @@ int main() {
                 int dia1,mes1,ano1;
             
                     
-                    cout << "Ingrese fecha CheckIn formato DD MM AAAA: "<<endl;
+                    cout << "Ingrese fecha a buscar [formato DD MM AAAA]: "<<endl;
                     cin >> dia1;
                     cin >> mes1;
                     cin >> ano1;
@@ -367,7 +367,8 @@ int main() {
                     if(dia1 < 1 || dia1 > 31 || mes1 < 1 || mes1 > 12 || ano1 < 1900){
                         throw invalid_argument("Formato No Respetado");
                     }
-            
+                    cout << endl;
+                    
                 DTReserva** res = systema.obtenerReservas(DTFecha(dia1,mes1,ano1), cantReservas);
                 for (int i = 0; i < cantReservas; i++) {
                 DTReserva* r = dynamic_cast<DTReserva*>(res[i]);
