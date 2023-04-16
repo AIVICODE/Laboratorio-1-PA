@@ -1,0 +1,3 @@
+a) Los pseudoatributos de la clase A que apuntaban a las clases B y C.
+
+b)La declaración de una clase o función realizada antes y aparte de su definición.
