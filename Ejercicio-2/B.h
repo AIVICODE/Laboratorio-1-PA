@@ -4,6 +4,7 @@
 #include "A.h"
 #include "C.h"
 
+
 class B {
 	private:
 	int b;
@@ -13,12 +14,12 @@ class B {
 	B(int nuevo_valor);
 	int get();
 	void set(int nuevo_valor);
-	A * A();
-	C * C();
+	A * a();
+	C * c();
 	void link(A * nuevo_A_link);
 	void link(C * nuevo_C_link);
 	void PrintInt();
 
-}
+};
 
 #endif
