@@ -16,9 +16,10 @@ std::ostream& operator<<(std::ostream& os, const DTReserva& reserva) {
         const DTReservaGrupal& grupal = static_cast<const DTReservaGrupal&>(reserva);
         os << "Huéspedes: ";
         for (const DTHuesped& huesped : grupal.getHuespedes()) {
+            os << std::endl;
             os << huesped.getNombre() << " - " << huesped.getEmail();
             if (huesped.getEsFinger()) {
-                os << " - es Finger";
+                os << " - es Tecnopacker";
             }
             os << ", "<<std::endl;
         }
