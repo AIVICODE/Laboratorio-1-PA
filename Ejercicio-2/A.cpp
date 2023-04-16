@@ -3,29 +3,31 @@
 #include "B.h"
 #include "C.h"
 
+using namespace std;
+
 A::A(int nuevo_valor){
-	this.a=nuevo_valor;
-	this.B_link=nullptr;
-	this.C_link=nullptr;
+	this->a=nuevo_valor;
+	this->B_link=nullptr;
+	this->C_link=nullptr;
 }
-A::get(){
-	return this.a;
+int A::get(){
+	return this->a;
 }
-A::B(){
+B * A::b(){
 	return B_link;
 }
-A::C(){
+C * A::c(){
 	return C_link;
 }
-A::set(int nuevo_valor){
-	this.a=nuevo_valor;
+void A::set(int nuevo_valor){
+	this->a=nuevo_valor;
 }
-A::link(B * nuevo_B_link){
-	this.B_link = nuevo_B_link;
+void A::link(B * nuevo_B_link){
+	this->B_link = nuevo_B_link;
 }
-A::link(C * nuevo_C_link){
-	this.C_link = nuevo_C_link;
+void A::link(C * nuevo_C_link){
+	this->C_link = nuevo_C_link;
 }
-A::PrintInt(){
-	cout << this.a << endl;
+void A::PrintInt(){
+	cout << this->a;
 }
